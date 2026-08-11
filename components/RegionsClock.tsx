@@ -24,7 +24,10 @@ function regionTime(tz: string) {
 }
 
 export default function RegionsClock() {
-  const [times, setTimes] = useState<string[]>(() => REGIONS.map((r) => regionTime(r.tz)));
+  // Must start empty: these pages are statically prerendered, so computing the
+  // time during render bakes the *build* time into the HTML and then mismatches
+  // on hydration. Real times are filled in on the client below.
+  const [times, setTimes] = useState<string[]>(() => REGIONS.map(() => ""));
 
   useEffect(() => {
     const tick = () => setTimes(REGIONS.map((r) => regionTime(r.tz)));
@@ -41,7 +44,7 @@ export default function RegionsClock() {
           className="inline-flex items-center gap-2.5 border border-line bg-raised/50 px-3.5 py-2 font-mono text-[12px] text-mute backdrop-blur-sm transition-colors duration-300 hover:border-mute hover:text-ink"
         >
           {r.label}
-          <span className="text-signal tabular-nums">{times[i]}</span>
+          <span className="text-signal tabular-nums">{times[i] || "--:--"}</span>
         </span>
       ))}
     </Reveal>

@@ -10,6 +10,9 @@ export default function CustomCursor() {
   const labRef = useRef<HTMLDivElement>(null);
   const [vis, setVis] = useState(false);
   const [press, setPress] = useState(false);
+  // The rAF loop below is set up once, so it can't read `press` from state
+  // without going stale — mirror it into a ref that the loop can read.
+  const pressRef = useRef(false);
   const pos = useRef({ x: 0, y: 0, cx: 0, cy: 0 });
 
   useEffect(() => {
@@ -29,10 +32,14 @@ export default function CustomCursor() {
     };
 
     const onDown = () => {
+      pressRef.current = true;
       setPress(true);
       engine.current.ripple = 1;
     };
-    const onUp = () => setPress(false);
+    const onUp = () => {
+      pressRef.current = false;
+      setPress(false);
+    };
 
     window.addEventListener("pointermove", onMove, { passive: true });
     document.addEventListener("pointerleave", onLeave);
@@ -43,7 +50,7 @@ export default function CustomCursor() {
     const follow = () => {
       const cur = curRef.current;
       const lab = labRef.current;
-      const lerp = press ? 0.35 : 0.2;
+      const lerp = pressRef.current ? 0.35 : 0.2;
       pos.current.cx += (pos.current.x - pos.current.cx) * lerp;
       pos.current.cy += (pos.current.y - pos.current.cy) * lerp;
       if (cur) {

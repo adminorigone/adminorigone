@@ -51,7 +51,7 @@ export default function TransformationLedger({ items }: { items: Transformation[
                 <span className="mx-2 text-faint transition-colors group-hover:text-accent/50">→</span>
                 <span>{t.to}</span>
                 {focus && (
-                  <span className="ml-2.5 align-middle bg-signal px-1.5 py-0.5 font-mono text-[9px] uppercase tracking-[0.12em] text-base">
+                  <span className="ml-2.5 align-middle bg-signal px-1.5 py-0.5 font-mono text-[9px] uppercase tracking-[0.12em] text-base-ink">
                     For you
                   </span>
                 )}

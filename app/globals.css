@@ -12,13 +12,16 @@
   --ink: #f3f1ec;
 }
 
-html {
-  scroll-behavior: smooth;
-}
-
+/* No `scroll-behavior: smooth` here — Lenis drives scrolling itself and the two
+   animations fight, producing stuttering jumps. The reduced-motion block below
+   restores native behaviour, which is what runs when Lenis is disabled. */
 html.lenis,
 html.lenis body {
   height: auto;
+}
+
+html.lenis {
+  scroll-behavior: auto;
 }
 
 body {

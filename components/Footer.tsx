@@ -1,12 +1,19 @@
 "use client";
 
 import Link from "next/link";
+import { useEffect, useState } from "react";
 import { NAV, SITE, FINAL_CTA } from "@/constants/site";
 import BrandMark from "@/components/BrandMark";
 import { useSceneOptional } from "@/components/scene/SceneProvider";
 
+const BUILD_YEAR = new Date().getFullYear();
+
 export default function Footer() {
   const scene = useSceneOptional();
+  // The page is statically prerendered, so the build-time year would stick until
+  // the next deploy. Correct it on the client once mounted.
+  const [year, setYear] = useState(BUILD_YEAR);
+  useEffect(() => setYear(new Date().getFullYear()), []);
 
   return (
     <footer className="relative border-t border-line bg-base/70 backdrop-blur-md">
@@ -67,6 +74,14 @@ export default function Footer() {
                 LinkedIn
               </a>
               <Link
+                href="/contact"
+                onMouseEnter={() => scene?.setCursorBig(true)}
+                onMouseLeave={() => scene?.setCursorBig(false)}
+                className="text-sm text-mute transition-colors hover:text-ink"
+              >
+                Contact
+              </Link>
+              <Link
                 href={FINAL_CTA.cta.href}
                 onMouseEnter={() => scene?.setCursorBig(true)}
                 onMouseLeave={() => scene?.setCursorBig(false)}
@@ -89,7 +104,7 @@ export default function Footer() {
         <div className="rule my-12" />
         <div className="flex flex-wrap items-center justify-between gap-3">
           <p className="font-mono text-[11px] text-faint">
-            © {new Date().getFullYear()} {SITE.name} · {SITE.location}
+            © {year} {SITE.name} · {SITE.location}
           </p>
           <p className="font-mono text-[11px] text-faint">Outcomes · Fixed scope · Your IP</p>
         </div>

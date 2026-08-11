@@ -1,8 +1,11 @@
 "use client";
 
 import { motion, useSpring, useReducedMotion } from "framer-motion";
+import Link from "next/link";
 import { useRef, type ReactNode, type MouseEvent } from "react";
 import { useSceneOptional } from "@/components/scene/SceneProvider";
+
+const MotionLink = motion(Link);
 
 export default function MagneticButton({
   href,
@@ -16,6 +19,9 @@ export default function MagneticButton({
   className?: string;
 }) {
   const ref = useRef<HTMLAnchorElement>(null);
+  // mailto:, tel: and http(s) leave the app — everything else is an in-app route
+  // and must go through next/link so we keep client-side navigation.
+  const isExternal = /^(https?:|mailto:|tel:)/i.test(href);
   const reduce = useReducedMotion();
   const scene = useSceneOptional();
   const x = useSpring(0, { stiffness: 220, damping: 16, mass: 0.35 });
@@ -43,21 +49,20 @@ export default function MagneticButton({
     "group relative inline-flex min-h-[54px] items-center justify-center gap-2.5 overflow-hidden whitespace-nowrap px-8 text-[15px]";
   const look =
     variant === "solid"
-      ? "btn-glow bg-accent font-medium text-base shadow-[0_0_0_0_transparent] transition-shadow duration-500 hover:shadow-[0_0_44px_rgba(194,168,120,0.38)]"
+      ? "bg-accent font-medium text-base-ink shadow-[0_0_0_0_transparent] transition-shadow duration-500 hover:shadow-[0_0_44px_rgba(194,168,120,0.38)]"
       : "border border-line text-ink transition-colors hover:border-mute hover:bg-white/[0.03]";
 
-  return (
-    <motion.a
-      ref={ref}
-      href={href}
-      target={href.startsWith("http") ? "_blank" : undefined}
-      rel={href.startsWith("http") ? "noopener noreferrer" : undefined}
-      onMouseMove={onMove}
-      onMouseEnter={onEnter}
-      onMouseLeave={onLeave}
-      style={{ x, y, scale }}
-      className={`${base} ${look} ${className}`}
-    >
+  const shared = {
+    ref,
+    onMouseMove: onMove,
+    onMouseEnter: onEnter,
+    onMouseLeave: onLeave,
+    style: { x, y, scale },
+    className: `${base} ${look} ${className}`,
+  };
+
+  const inner = (
+    <>
       {variant === "solid" && (
         <span
           aria-hidden
@@ -73,6 +78,26 @@ export default function MagneticButton({
           →
         </span>
       )}
-    </motion.a>
+    </>
+  );
+
+  if (isExternal) {
+    const newTab = /^https?:/i.test(href);
+    return (
+      <motion.a
+        {...shared}
+        href={href}
+        target={newTab ? "_blank" : undefined}
+        rel={newTab ? "noopener noreferrer" : undefined}
+      >
+        {inner}
+      </motion.a>
+    );
+  }
+
+  return (
+    <MotionLink {...shared} href={href}>
+      {inner}
+    </MotionLink>
   );
 }

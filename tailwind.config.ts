@@ -6,6 +6,10 @@ const config: Config = {
     extend: {
       colors: {
         base: "#080808",
+        // Alias for use as a *text* colour. `text-base` collides with Tailwind's
+        // built-in font-size utility of the same name, which silently overrides
+        // any font size set alongside it — use `text-base-ink` instead.
+        "base-ink": "#080808",
         raised: "#111111",
         surface: "#161616",
         ink: "#F3F1EC",
@@ -31,6 +35,9 @@ const config: Config = {
       },
       transitionTimingFunction: {
         outExpo: "cubic-bezier(0.22, 1, 0.36, 1)",
+      },
+      transitionDuration: {
+        "400": "400ms",
       },
     },
   },

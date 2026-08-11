@@ -25,6 +25,20 @@ export default function Navbar() {
 
   useEffect(() => setOpen(false), [pathname]);
 
+  // Tapping the route you're already on doesn't change `pathname`, so the panel
+  // would stay open; close it explicitly on any menu tap.
+  const closeMenu = () => setOpen(false);
+
+  // Stop the page scrolling underneath the open mobile panel.
+  useEffect(() => {
+    if (!open) return;
+    const prev = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = prev;
+    };
+  }, [open]);
+
   const isActive = (href: string) =>
     href === "/work" ? pathname.startsWith("/work") : pathname === href || pathname.startsWith(href + "/");
 
@@ -114,12 +128,16 @@ export default function Navbar() {
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ delay: 0.05 + i * 0.05 }}
                   >
-                    <Link href={item.href} className="block py-3.5 text-2xl font-display font-semibold text-ink">
+                    <Link
+                      href={item.href}
+                      onClick={closeMenu}
+                      className="block py-3.5 text-2xl font-display font-semibold text-ink"
+                    >
                       {item.label}
                     </Link>
                   </motion.div>
                 ))}
-                <Link href="/discovery" className="mt-2 py-3.5 text-lg text-signal">
+                <Link href="/discovery" onClick={closeMenu} className="mt-2 py-3.5 text-lg text-signal">
                   Strategy session →
                 </Link>
               </div>

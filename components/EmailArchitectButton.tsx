@@ -23,7 +23,7 @@ export default function EmailArchitectButton() {
 
   const subject = interest
     ? `Strategy session — ${interest}`
-    : "Strategy session with Origo One";
+    : `Strategy session with ${SITE.name}`;
 
   const body = interest
     ? `Hi — I explored ${interest} on your site and would like to talk.`

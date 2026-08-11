@@ -13,8 +13,8 @@ export const SITE = {
   tagline: "We redesign operations with AI — before competitors do.",
   description:
     "Origo One is an AI-native consultancy for executives who need operational advantage. We redesign workflows, build intelligent systems, and ship production outcomes — with enterprise thinking and startup speed.",
-  email: "hello@origo.one",
-  domain: "origo.one",
+  email: "hello@oorigone.com",
+  domain: "oorigone.com",
   linkedin: "https://linkedin.com/company/origo-one",
   calLink: "https://cal.com/origo-one/strategy",
   abn: "ABN 00 000 000 000",
