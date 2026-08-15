@@ -1,6 +1,7 @@
 "use client";
 
 import dynamic from "next/dynamic";
+import { motion } from "framer-motion";
 import Image from "next/image";
 import Hero from "@/components/Hero";
 import Reveal from "@/components/Reveal";
