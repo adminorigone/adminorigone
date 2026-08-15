@@ -97,8 +97,7 @@ export default function Hero() {
           <BrandMark size="hero" />
         </motion.div>
 
-        <h1 className="sr-only">Origo One — Enterprise AI Product Agency serving USA, Europe, and Australia. AI Workflow Automation, Tech Audits, and Product Engineering.</h1>
-        <motion.h2
+        <motion.h1
           style={reduce ? undefined : { x: titleX, y: titleY }}
           className="mt-4 max-w-[16ch] font-display text-[clamp(28px,5.8vw,92px)] font-semibold leading-[1.02] tracking-display text-ink will-change-transform max-[700px]:mt-3 md:mt-6 [@media(max-height:700px)]:text-[clamp(28px,8vh,56px)]"
         >
@@ -121,7 +120,7 @@ export default function Hero() {
               </span>
             );
           })}
-        </motion.h2>
+        </motion.h1>
 
         <motion.div
           initial={reduce ? false : { scaleX: 0 }}

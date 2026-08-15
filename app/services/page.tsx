@@ -17,11 +17,10 @@ export default function ServicesPage() {
         <Reveal as="span" className="block font-mono text-[11px] uppercase tracking-[0.18em] text-faint">
           ( Transformations )
         </Reveal>
-        <h1 className="sr-only">AI Workflow Automation, Technical Audits & AI Product Engineering Services</h1>
         <Reveal>
-          <h2 className="mt-6 max-w-[16ch] font-display text-[clamp(40px,7vw,84px)] font-semibold leading-[1.02] tracking-display text-ink">
+          <h1 className="mt-6 max-w-[16ch] font-display text-[clamp(40px,7vw,84px)] font-semibold leading-[1.02] tracking-display text-ink">
             Sell the before → after. Not the tech.
-          </h2>
+          </h1>
         </Reveal>
         <Reveal delay={0.1}>
           <p className="mt-7 max-w-[560px] text-[18px] leading-relaxed text-mute md:text-[19px]">

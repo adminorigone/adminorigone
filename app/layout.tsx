@@ -34,9 +34,9 @@ export const metadata: Metadata = {
   keywords: [
     "Enterprise AI Consulting",
     "AI Product Agency Australia",
-    "AI Product Agency Sydney",
+    "AI Product Agency Dubai",
     "Custom AI Workflows USA",
-    "AI Automation Agency Europe",
+    "AI Automation Agency Middle East",
     "Technical AI Audits",
     "LLM Development Company",
     "Machine Learning Consulting",
@@ -81,7 +81,7 @@ const jsonLd = {
     addressLocality: "Sydney",
     addressCountry: "AU",
   },
-  areaServed: ["US", "GB", "AU", "EU"],
+  areaServed: ["US", "GB", "AU", "EU", "AE"],
   contactPoint: {
     "@type": "ContactPoint",
     email: SITE.email,

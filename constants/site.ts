@@ -2,23 +2,23 @@
 // Brand source of truth — Origo One
 // Positioning: Enterprise AI Product Agency.
 // Core Pillars: Workflow Automation | Tech Audits | AI Product Engineering
-// Market: United States · Europe · Australia
+// Market: United States · Europe · Australia · Middle East (Dubai, UAE)
 // ─────────────────────────────────────────────────────────────
 
 export const SITE = {
   name: "Origo One",
   shortName: "Origo",
   legalName: "Origo One",
-  tagline: "We turn AI concepts into production reality for Tier-1 enterprises.",
+  tagline: "We turn AI concepts into production reality for Tier-1 enterprises globally.",
   description:
-    "Origo One is an elite, international AI product agency and AI consulting firm. We untangle technical debt, automate high-value workflows, and engineer production-grade AI applications for ambitious enterprises across the USA, Europe, and Australia.",
+    "Origo One is an elite AI product agency and AI consulting firm. We untangle technical debt, automate high-value workflows, and engineer production-grade AI applications for ambitious enterprises across the USA, Europe, Australia, and the UAE (Dubai).",
   email: "hello@oorigone.com",
   domain: "oorigone.com",
   linkedin: "https://linkedin.com/company/origo-one",
   calLink: "https://cal.com/origo-one/strategy",
   abn: "ABN 00 000 000 000",
   location: "Global · Sydney",
-  markets: ["United States", "Europe", "Australia"],
+  markets: ["United States", "Europe", "Australia", "UAE (Dubai)"],
 };
 
 export const NAV = [
@@ -32,7 +32,7 @@ export const HERO = {
   brand: "Origo One",
   headline: "Stop piloting AI. Start shipping products.",
   subline:
-    "We are an Enterprise AI Product Agency serving the USA, Europe, and Australia. We untangle technical debt, collapse manual workflows, and turn raw ideas into secure, production-ready AI software.",
+    "We are an Enterprise AI Product Agency serving the USA, Europe, Australia, and the Middle East (Dubai). We untangle technical debt, collapse manual workflows, and turn raw ideas into secure, production-ready AI software.",
   primaryCta: { label: "Talk to an AI architect", href: "/discovery" },
   secondaryCta: { label: "See what's possible", scene: "poss" },
 };
@@ -227,7 +227,7 @@ export const FAQS = [
   },
   {
     q: "Where are you based?",
-    a: "We are an international agency with our core presence in Sydney, Australia. We work globally with clients across the US, Europe, and Australia.",
+    a: "We are an international agency with our core presence in Sydney, Australia. We work globally with clients across the US, Europe, Australia, and the UAE (Dubai).",
   },
   {
     q: "How does pricing work?",
