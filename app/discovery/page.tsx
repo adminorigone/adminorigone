@@ -5,7 +5,7 @@ import ContactForm from "@/components/ContactForm";
 import { DISCOVERY, SITE } from "@/constants/site";
 
 export const metadata: Metadata = {
-  title: "Strategy session",
+  title: "Book a discovery call",
   description: DISCOVERY.subline,
 };
 
@@ -43,7 +43,7 @@ export default function DiscoveryPage() {
 
         <Reveal delay={0.2} className="mt-12 flex flex-col gap-8 md:flex-row md:items-start">
           <div className="flex flex-col gap-3">
-            <MagneticButton href={SITE.calLink}>Book the strategy session</MagneticButton>
+            <MagneticButton href={SITE.calLink}>Book a call</MagneticButton>
             <p className="mt-8 max-w-[420px] text-[14px] leading-relaxed text-faint">
               This call filters for fit. If budget, timeline, or ambition don&apos;t align, we&apos;ll
               say so — and point you toward a better option when we can.
@@ -51,7 +51,7 @@ export default function DiscoveryPage() {
           </div>
           
           <div className="flex w-full flex-col md:ml-12 md:max-w-[400px]">
-            <span className="font-mono text-xs uppercase tracking-wider text-faint">Or reach out directly</span>
+            <span className="font-mono text-xs uppercase tracking-wider text-faint">Or send a message</span>
             <ContactForm />
           </div>
         </Reveal>

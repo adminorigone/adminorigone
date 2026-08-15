@@ -10,7 +10,7 @@ const contactSchema = z.object({
   name: z.string().min(2, "Name is required"),
   email: z.string().email("Invalid email address"),
   company: z.string().min(2, "Company is required"),
-  workflow: z.string().min(10, "Please describe the workflow constraint"),
+  workflow: z.string().min(10, "Tell us what you're working on"),
 });
 
 type ContactFormData = z.infer<typeof contactSchema>;
@@ -71,9 +71,9 @@ export default function ContactForm() {
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
               </svg>
             </div>
-            <h3 className="font-display text-[28px] font-semibold text-white">Signal Received</h3>
+            <h3 className="font-display text-[28px] font-semibold text-white">We'll be in touch.</h3>
             <p className="mt-3 text-[16px] text-white/60">
-              Our systems have logged your workflow constraints. A specialist will be in touch shortly to map out your infrastructure overhaul.
+              Got your message. We'll review it and come back to you within one business day.
             </p>
           </motion.div>
         ) : (
@@ -111,14 +111,14 @@ export default function ContactForm() {
 
             <motion.div variants={itemVariants} className="flex flex-col gap-2">
               <label htmlFor="workflow" className="pl-1 font-mono text-[11px] uppercase tracking-widest text-[#FFB000]">
-                Workflow Constraint
+                What do you need built?
               </label>
               <textarea
                 {...register("workflow")}
                 id="workflow"
                 rows={4}
                 className={`${inputClass} resize-none`}
-                placeholder="Describe the bottleneck or AI integration you need..."
+                placeholder="Describe the problem, workflow, or product — whatever you're trying to solve or build."
               />
               {errors.workflow && <span className="pl-1 text-xs text-red-400">{errors.workflow.message}</span>}
             </motion.div>
@@ -129,13 +129,13 @@ export default function ContactForm() {
                 disabled={status === "submitting"}
                 className="group relative flex h-12 w-full items-center justify-center overflow-hidden rounded-xl bg-[#FFB000] font-sans text-[15px] font-semibold text-black transition-all hover:bg-[#FFB000]/90 disabled:opacity-50"
               >
-                <span className="relative z-10">{status === "submitting" ? "Transmitting..." : "Initialize Sequence"}</span>
+                <span className="relative z-10">{status === "submitting" ? "Sending..." : "Send it"}</span>
               </button>
             </motion.div>
 
             {status === "error" && (
               <motion.span initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="text-center text-sm text-red-400">
-                Transmission failed. Please verify your connection and try again.
+                An error occurred. Please try again or contact us directly at hello@oorigone.com.
               </motion.span>
             )}
           </motion.form>
