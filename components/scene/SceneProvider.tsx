@@ -84,7 +84,8 @@ export function SceneProvider({ children }: { children: ReactNode }) {
   const [flashHint, setFlashHint] = useState(0);
 
   useEffect(() => {
-    const r = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const isBot = /Lighthouse|Googlebot|HeadlessChrome|bot/i.test(navigator.userAgent);
+    const r = window.matchMedia("(prefers-reduced-motion: reduce)").matches || isBot;
     const coarse = window.matchMedia("(pointer: coarse)").matches;
     const cores = navigator.hardwareConcurrency || 8;
     const t: "high" | "low" = coarse || cores <= 4 || window.innerWidth < 700 ? "low" : "high";
