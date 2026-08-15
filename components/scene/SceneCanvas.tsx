@@ -282,19 +282,48 @@ export default function SceneCanvas() {
         if (mAmt > 0.01 && mCode) {
           const k = mAmt * (1 - formed * 0.5);
           if (mCode === 1) {
-            x += Math.sin(i * 1.7 + time * 2.5) * 0.7 * k;
-            y += Math.cos(i * 2.3 + time * 2.2) * 0.7 * k;
+            // Torus Knot (Process Page / "ai")
+            const t = (i / N) * Math.PI * 2 * 3; 
+            const p = 3, q = 2; 
+            const rad = 2.5 + Math.cos(q * t) * 0.5;
+            const targetX = rad * Math.cos(p * t);
+            const targetY = rad * Math.sin(p * t);
+            const targetZ = Math.sin(q * t) * 1.5;
+            x += (targetX - x) * k;
+            y += (targetY - y) * k;
+            z += (targetZ - z) * k;
           } else if (mCode === 2) {
-            x += (Math.round(x / 1.2) * 1.2 - x) * k;
-            y += (Math.round(y / 1.2) * 1.2 - y) * k;
-            z += (Math.round(z / 1.2) * 1.2 - z) * k;
+            // Quantum Wave Field (Careers Page / "saas")
+            const gridSide = Math.ceil(Math.sqrt(N));
+            const col = i % gridSide;
+            const row = Math.floor(i / gridSide);
+            const nx = (col / gridSide - 0.5) * 10;
+            const nz = (row / gridSide - 0.5) * 10;
+            const ny = Math.sin(nx * 1.5 + time * 2) * 0.6 + Math.cos(nz * 1.5 + time * 1.8) * 0.6;
+            x += (nx - x) * k;
+            y += (ny - y) * k;
+            z += (nz - z) * k;
           } else if (mCode === 3) {
-            x += (x >= 0 ? 1 : -1) * 2.05 * k;
+            // Double Helix (Services Page / "market")
+            const strand = i % 2;
+            const t = (i / N) * Math.PI * 12 + time * 0.5;
+            const radius = 1.8;
+            const targetX = Math.cos(t + strand * Math.PI) * radius;
+            const targetZ = Math.sin(t + strand * Math.PI) * radius;
+            const targetY = (i / N - 0.5) * 12;
+            x += (targetX - x) * k;
+            y += (targetY - y) * k;
+            z += (targetZ - z) * k;
           } else {
-            const rxz = Math.hypot(x, z) || 1;
-            x += ((x * 3.2) / rxz - x) * k;
-            z += ((z * 3.2) / rxz - z) * k;
-            y += -y * k * 0.6;
+            // Swirling Galaxy (About Page / "auto")
+            const angle = (i / N) * Math.PI * 25 + time * 0.8;
+            const rad = (i / N) * 6;
+            const targetX = Math.cos(angle) * rad;
+            const targetZ = Math.sin(angle) * rad;
+            const targetY = (Math.random() - 0.5) * Math.max(0, (1 - rad / 6)) * 2.5; 
+            x += (targetX - x) * k;
+            y += (targetY - y) * k;
+            z += (targetZ - z) * k;
           }
         }
 
