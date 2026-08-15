@@ -43,7 +43,7 @@ export default function LiveExperience({ children }: { children: React.ReactNode
       <div
         className="pointer-events-none fixed inset-0 z-[1]"
         style={{
-          background: `radial-gradient(ellipse at center, transparent 0%, rgba(5,5,5,0.7) 100%)`,
+          background: `radial-gradient(ellipse at center, rgba(5,5,5,0.45) 0%, rgba(5,5,5,0.85) 100%)`,
         }}
         aria-hidden
       />

@@ -354,7 +354,7 @@ export default function SceneCanvas() {
       const breathe = 1 + Math.sin(time * 0.85) * 0.014;
       points.scale.setScalar(breathe);
       camera.position.z = 8.4 - globeAmt * 2.5 - p.ty * 0.35;
-      mat.opacity = 0.48 + formed * 0.38;
+      mat.opacity = 0.25 + formed * 0.25;
       mat.size = 0.075 + gridAmt * 0.055 + (1 - formed) * 0.02;
       renderer.render(threeScene, camera);
       raf = requestAnimationFrame(loop);
