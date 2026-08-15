@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
+import { motion, AnimatePresence } from "framer-motion";
 
 const contactSchema = z.object({
   name: z.string().min(2, "Name is required"),
@@ -16,13 +17,7 @@ type ContactFormData = z.infer<typeof contactSchema>;
 
 export default function ContactForm() {
   const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<ContactFormData>({
-    resolver: zodResolver(contactSchema),
-  });
+  const { register, handleSubmit, formState: { errors } } = useForm<ContactFormData>({ resolver: zodResolver(contactSchema) });
 
   const onSubmit = async (data: ContactFormData) => {
     setStatus("submitting");
@@ -43,79 +38,109 @@ export default function ContactForm() {
     }
   };
 
-  if (status === "success") {
-    return (
-      <div className="mt-10 max-w-[500px] border border-line bg-raised/50 p-8">
-        <h3 className="font-display text-[24px] text-signal">Request received.</h3>
-        <p className="mt-2 text-mute">We will review your workflow constraints and get back to you shortly.</p>
-      </div>
-    );
-  }
+  const inputClass = "w-full rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-[16px] text-white outline-none transition-all placeholder:text-white/30 hover:border-white/20 focus:border-[#FFB000] focus:bg-white/10 focus:ring-1 focus:ring-[#FFB000]/50 backdrop-blur-md shadow-inner";
+
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    show: {
+      opacity: 1,
+      transition: { staggerChildren: 0.1 }
+    }
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 15 },
+    show: { opacity: 1, y: 0, transition: { type: "spring", stiffness: 300, damping: 24 } }
+  };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="mt-12 flex w-full max-w-[500px] flex-col gap-6">
-      <div className="flex flex-col gap-2">
-        <label htmlFor="name" className="font-mono text-xs uppercase tracking-wider text-faint">
-          Name
-        </label>
-        <input
-          {...register("name")}
-          id="name"
-          className="w-full border-b border-line bg-transparent pb-2 text-[16px] text-ink outline-none transition-colors focus:border-signal"
-        />
-        {errors.name && <span className="text-xs text-red-500">{errors.name.message}</span>}
-      </div>
+    <div className="relative mt-12 w-full max-w-[550px]">
+      {/* Background ambient glow */}
+      <div className="pointer-events-none absolute inset-0 -z-10 bg-[#FFB000]/5 blur-[100px]" />
+      
+      <AnimatePresence mode="wait">
+        {status === "success" ? (
+          <motion.div
+            key="success"
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            className="glass-card flex flex-col items-center justify-center rounded-2xl border border-[#FFB000]/30 p-12 text-center shadow-[0_0_40px_rgba(255,176,0,0.1)]"
+          >
+            <div className="mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-[#FFB000]/20 text-[#FFB000]">
+              <svg className="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+              </svg>
+            </div>
+            <h3 className="font-display text-[28px] font-semibold text-white">Signal Received</h3>
+            <p className="mt-3 text-[16px] text-white/60">
+              Our systems have logged your workflow constraints. A specialist will be in touch shortly to map out your infrastructure overhaul.
+            </p>
+          </motion.div>
+        ) : (
+          <motion.form
+            key="form"
+            variants={containerVariants}
+            initial="hidden"
+            animate="show"
+            onSubmit={handleSubmit(onSubmit)}
+            className="glass-card flex w-full flex-col gap-6 rounded-2xl border border-white/10 p-8 shadow-2xl"
+          >
+            <motion.div variants={itemVariants} className="flex flex-col gap-2">
+              <label htmlFor="name" className="pl-1 font-mono text-[11px] uppercase tracking-widest text-[#FFB000]">
+                Name
+              </label>
+              <input {...register("name")} id="name" placeholder="John Doe" className={inputClass} />
+              {errors.name && <span className="pl-1 text-xs text-red-400">{errors.name.message}</span>}
+            </motion.div>
 
-      <div className="flex flex-col gap-2">
-        <label htmlFor="email" className="font-mono text-xs uppercase tracking-wider text-faint">
-          Email
-        </label>
-        <input
-          {...register("email")}
-          id="email"
-          type="email"
-          className="w-full border-b border-line bg-transparent pb-2 text-[16px] text-ink outline-none transition-colors focus:border-signal"
-        />
-        {errors.email && <span className="text-xs text-red-500">{errors.email.message}</span>}
-      </div>
+            <motion.div variants={itemVariants} className="flex flex-col gap-2">
+              <label htmlFor="email" className="pl-1 font-mono text-[11px] uppercase tracking-widest text-[#FFB000]">
+                Email
+              </label>
+              <input {...register("email")} id="email" type="email" placeholder="john@company.com" className={inputClass} />
+              {errors.email && <span className="pl-1 text-xs text-red-400">{errors.email.message}</span>}
+            </motion.div>
 
-      <div className="flex flex-col gap-2">
-        <label htmlFor="company" className="font-mono text-xs uppercase tracking-wider text-faint">
-          Company
-        </label>
-        <input
-          {...register("company")}
-          id="company"
-          className="w-full border-b border-line bg-transparent pb-2 text-[16px] text-ink outline-none transition-colors focus:border-signal"
-        />
-        {errors.company && <span className="text-xs text-red-500">{errors.company.message}</span>}
-      </div>
+            <motion.div variants={itemVariants} className="flex flex-col gap-2">
+              <label htmlFor="company" className="pl-1 font-mono text-[11px] uppercase tracking-widest text-[#FFB000]">
+                Company
+              </label>
+              <input {...register("company")} id="company" placeholder="Acme Corp" className={inputClass} />
+              {errors.company && <span className="pl-1 text-xs text-red-400">{errors.company.message}</span>}
+            </motion.div>
 
-      <div className="flex flex-col gap-2">
-        <label htmlFor="workflow" className="font-mono text-xs uppercase tracking-wider text-faint">
-          Workflow Constraint
-        </label>
-        <textarea
-          {...register("workflow")}
-          id="workflow"
-          rows={3}
-          className="w-full border-b border-line bg-transparent pb-2 text-[16px] text-ink outline-none transition-colors focus:border-signal"
-          placeholder="What is currently breaking?"
-        />
-        {errors.workflow && <span className="text-xs text-red-500">{errors.workflow.message}</span>}
-      </div>
+            <motion.div variants={itemVariants} className="flex flex-col gap-2">
+              <label htmlFor="workflow" className="pl-1 font-mono text-[11px] uppercase tracking-widest text-[#FFB000]">
+                Workflow Constraint
+              </label>
+              <textarea
+                {...register("workflow")}
+                id="workflow"
+                rows={4}
+                className={`${inputClass} resize-none`}
+                placeholder="Describe the bottleneck or AI integration you need..."
+              />
+              {errors.workflow && <span className="pl-1 text-xs text-red-400">{errors.workflow.message}</span>}
+            </motion.div>
 
-      <button
-        type="submit"
-        disabled={status === "submitting"}
-        className="mt-6 flex h-12 w-full items-center justify-center bg-ink font-sans text-[15px] font-medium text-base transition-opacity hover:opacity-90 disabled:opacity-50"
-      >
-        {status === "submitting" ? "Submitting..." : "Send Request"}
-      </button>
+            <motion.div variants={itemVariants} className="mt-4 flex w-full justify-end">
+               <button
+                type="submit"
+                disabled={status === "submitting"}
+                className="group relative flex h-12 w-full items-center justify-center overflow-hidden rounded-xl bg-[#FFB000] font-sans text-[15px] font-semibold text-black transition-all hover:bg-[#FFB000]/90 disabled:opacity-50"
+              >
+                <span className="relative z-10">{status === "submitting" ? "Transmitting..." : "Initialize Sequence"}</span>
+              </button>
+            </motion.div>
 
-      {status === "error" && (
-        <span className="text-center text-sm text-red-500">Something went wrong. Please try again.</span>
-      )}
-    </form>
+            {status === "error" && (
+              <motion.span initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="text-center text-sm text-red-400">
+                Transmission failed. Please verify your connection and try again.
+              </motion.span>
+            )}
+          </motion.form>
+        )}
+      </AnimatePresence>
+    </div>
   );
 }

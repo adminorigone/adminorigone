@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Reveal from "@/components/Reveal";
 import BrowserFrame from "@/components/BrowserFrame";
-import ImagePlaceholder from "@/components/ImagePlaceholder";
+import Image from "next/image";
 import MagneticButton from "@/components/MagneticButton";
 import TextLink from "@/components/TextLink";
 import { HIRECAR_CASE, FINAL_CTA } from "@/constants/site";
@@ -63,7 +63,14 @@ export default function HireCarCaseStudy() {
       <section className="mx-auto max-w-narrative px-5 pt-14 md:px-8">
         <Reveal>
           <BrowserFrame url={c.url} tilt>
-            <ImagePlaceholder label="homepage — production" className="aspect-[16/9] border-b-0" />
+            <Image 
+              src="/hirecar_mockup.jpg" 
+              alt="HireCarMarketplace Production Dashboard" 
+              width={1600} 
+              height={900} 
+              className="w-full h-auto object-cover border-b-0 aspect-[16/10]" 
+              priority 
+            />
           </BrowserFrame>
         </Reveal>
       </section>
@@ -100,16 +107,7 @@ export default function HireCarCaseStudy() {
             ))}
           </div>
         </Row>
-        <Row label="Screens">
-          <div className="flex flex-wrap gap-4">
-            <div className="min-w-[220px] flex-1 border border-line">
-              <ImagePlaceholder label="search + listings" className="aspect-[4/3] border-b-0" />
-            </div>
-            <div className="min-w-[220px] flex-1 border border-line">
-              <ImagePlaceholder label="booking flow" className="aspect-[4/3] border-b-0" />
-            </div>
-          </div>
-        </Row>
+
         <Row label="Results · ROI">
           <div className="grid grid-cols-1 md:grid-cols-3">
             {c.results.map((r) => (
