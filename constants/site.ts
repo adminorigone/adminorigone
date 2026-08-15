@@ -17,6 +17,7 @@ export const SITE = {
   linkedin: "https://linkedin.com/company/origo-one",
   calLink: "https://cal.com/origo-one/strategy",
   abn: "ABN 00 000 000 000",
+  location: "Global",
   markets: ["Global"],
 };
 
