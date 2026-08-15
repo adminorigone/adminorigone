@@ -30,7 +30,7 @@ html.lenis {
   scroll-behavior: auto;
 }
 
-body {
+html, body {
   @apply bg-base text-mute antialiased;
   overflow-x: hidden;
   background-color: #080808;

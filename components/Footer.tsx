@@ -32,7 +32,7 @@ export default function Footer() {
             <p className="mt-4 text-sm leading-relaxed text-mute">{SITE.tagline}</p>
             <div className="mt-5 flex items-center gap-2">
               <span className="status-dot" />
-              <span className="font-mono text-[11px] uppercase tracking-[0.12em] text-faint">
+              <span className="font-mono text-[11px] uppercase tracking-[0.12em] text-faint" suppressHydrationWarning>
                 {/* Was hard-coded "Q3 2026" — silently goes stale every quarter. */}
                 Accepting strategy sessions · {quarterLabel(now)}
               </span>
@@ -122,7 +122,7 @@ export default function Footer() {
 
         <div className="rule my-12" />
         <div className="flex flex-wrap items-center justify-between gap-3">
-          <p className="font-mono text-[11px] text-faint">
+          <p className="font-mono text-[11px] text-faint" suppressHydrationWarning>
             © {year} {SITE.name} · {SITE.location}
           </p>
           <p className="font-mono text-[11px] text-faint">Outcomes · Fixed scope · Your IP</p>

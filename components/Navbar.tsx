@@ -36,11 +36,14 @@ export default function Navbar() {
   // with programmatic scrolls that ignore it, so it has to be stopped too.
   useEffect(() => {
     if (!open) return;
-    const prev = document.body.style.overflow;
+    const prevBody = document.body.style.overflow;
+    const prevHtml = document.documentElement.style.overflow;
     document.body.style.overflow = "hidden";
+    document.documentElement.style.overflow = "hidden";
     lockScroll();
     return () => {
-      document.body.style.overflow = prev;
+      document.body.style.overflow = prevBody;
+      document.documentElement.style.overflow = prevHtml;
       unlockScroll();
     };
   }, [open]);
