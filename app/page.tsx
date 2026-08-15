@@ -194,22 +194,20 @@ export default function HomePage() {
         <ProcessSteps />
       </ActSection>
 
-      <ActSection scene="ship" className="items-center text-center md:items-start md:text-left">
-        <SectionHead no={sec("ship").no} label={sec("ship").label} />
-        <TextReveal as="h2" className="font-display text-[clamp(36px,6vw,88px)] font-semibold leading-[0.98] tracking-display text-ink">
-          <WordReveal text="Distributed studio." />
-          <br />
-          <WordReveal text="Your working hours." delay={0.15} />
+      <ActSection scene="cta" className="items-center text-center md:items-start md:text-left">
+        <SectionHead no={sec("cta").no} label={sec("cta").label} />
+        <TextReveal as="h2" className="mb-6 font-display text-[clamp(36px,5.5vw,72px)] font-semibold leading-[0.98] tracking-display text-ink">
+          <WordReveal text={FINAL_CTA.heading} />
         </TextReveal>
         <TextReveal>
-          <p className="mx-auto mt-8 max-w-[520px] text-[18px] leading-relaxed text-mute md:mx-0 md:text-[19px]">
-            Senior-only, aligned to your clock. Daily written updates. Weekly live demos. You always
-            know exactly where the system stands.
+          <p className="mx-auto max-w-[540px] text-[18px] leading-relaxed text-mute md:mx-0 md:text-[19px]">
+            {FINAL_CTA.body}
           </p>
         </TextReveal>
-        <div className="mt-10">
-          <RegionsClock />
-        </div>
+        <Reveal delay={0.12} className="mt-10 flex flex-wrap items-center justify-center gap-4 md:justify-start">
+          <MagneticButton href={FINAL_CTA.cta.href}>{FINAL_CTA.cta.label}</MagneticButton>
+          <EmailArchitectButton />
+        </Reveal>
       </ActSection>
 
       <ActSection scene="clarity">
@@ -224,7 +222,7 @@ export default function HomePage() {
         </div>
       </ActSection>
 
-      <ActSection scene="cta" className="relative flex min-h-[100svh] flex-col items-center justify-center pb-20 pt-32">
+      <ActSection scene="ship" className="relative flex min-h-[100svh] flex-col items-center justify-center pb-20 pt-32">
         <div className="pointer-events-none absolute inset-0 z-0 bg-[radial-gradient(ellipse_at_center,transparent_0%,rgba(5,5,5,0.75)_100%)]" aria-hidden />
         <motion.div 
           initial={{ opacity: 0, scale: 0.95 }}
@@ -234,13 +232,16 @@ export default function HomePage() {
           className="relative z-10 flex flex-col items-center text-center px-4"
         >
           <span className="block font-mono text-[11px] uppercase tracking-[0.18em] text-faint mb-8">
-            ( {sec("cta").no} ) — {sec("cta").label}
+            ( {sec("ship").no} ) — {sec("ship").label}
           </span>
           <h2 className="font-display text-[clamp(44px,7vw,110px)] font-semibold leading-[0.94] tracking-display text-ink mix-blend-plus-lighter drop-shadow-[0_0_30px_rgba(255,255,255,0.15)]">
-            Come build a <br className="hidden md:block" /> product with us.
+            Distributed <br className="hidden md:block" /> studio.
           </h2>
+          <p className="mt-8 max-w-[420px] text-[18px] leading-relaxed text-mute mix-blend-plus-lighter">
+            Senior-only, aligned to your clock. Daily written updates. Weekly live demos. You always know exactly where the system stands.
+          </p>
           <div className="mt-12 flex justify-center">
-            <MagneticButton href="/contact">Start the conversation</MagneticButton>
+            <MagneticButton href="/contact">Apply for partnership</MagneticButton>
           </div>
         </motion.div>
       </ActSection>

@@ -11,21 +11,18 @@ export const SITE = {
   legalName: "Origo One",
   tagline: "We turn AI concepts into production reality for Tier-1 enterprises globally.",
   description:
-    "Origo One is an elite AI product agency and AI consulting firm. We untangle technical debt, automate high-value workflows, and engineer production-grade AI applications for ambitious enterprises across the USA, Europe, Australia, and the UAE (Dubai).",
+    "Origo One is an elite AI product agency and consulting firm. We untangle technical debt, automate high-value workflows, and engineer production-grade AI applications for ambitious enterprises globally.",
   email: "hello@oorigone.com",
   domain: "oorigone.com",
   linkedin: "https://linkedin.com/company/origo-one",
   calLink: "https://cal.com/origo-one/strategy",
   abn: "ABN 00 000 000 000",
-  location: "Global · Sydney",
-  markets: ["United States", "Europe", "Australia", "UAE (Dubai)"],
+  markets: ["Global"],
 };
 
 export const CITIES = [
-  { slug: "dubai", name: "Dubai", region: "Middle East" },
-  { slug: "sydney", name: "Sydney", region: "Australia" },
-  { slug: "new-york", name: "New York", region: "USA" },
-  { slug: "london", name: "London", region: "Europe" },
+  { slug: "sydney", name: "Sydney", region: "HQ" },
+  { slug: "global", name: "Remote", region: "Worldwide" },
 ];
 
 export const NAV = [
@@ -39,7 +36,7 @@ export const HERO = {
   brand: "Origo One",
   headline: "Stop piloting AI. Start shipping products.",
   subline:
-    "We are an Enterprise AI Product Agency serving the USA, Europe, Australia, and the Middle East (Dubai). We untangle technical debt, collapse manual workflows, and turn raw ideas into secure, production-ready AI software.",
+    "We are an Enterprise AI Product Agency. We untangle technical debt, collapse manual workflows, and turn raw ideas into secure, production-ready AI software for global enterprises.",
   primaryCta: { label: "Talk to an AI architect", href: "/discovery" },
   secondaryCta: { label: "See what's possible", scene: "poss" },
 };
@@ -54,9 +51,9 @@ export const HOME_SECTIONS = [
   { id: "cap", no: "06", label: "Capabilities" },
   { id: "machine", no: "07", label: "How we build" },
   { id: "work", no: "08", label: "Shipped" },
-  { id: "ship", no: "09", label: "Partnership" },
+  { id: "cta", no: "09", label: "Partnership" },
   { id: "clarity", no: "10", label: "Clarity" },
-  { id: "cta", no: "11", label: "Next" },
+  { id: "ship", no: "11", label: "Studio" },
 ] as const;
 
 export type HomeSectionId = (typeof HOME_SECTIONS)[number]["id"];
@@ -234,7 +231,7 @@ export const FAQS = [
   },
   {
     q: "Where are you based?",
-    a: "We are an international agency with our core presence in Sydney, Australia. We work globally with clients across the US, Europe, Australia, and the UAE (Dubai).",
+    a: "We are an international agency with our core presence in Sydney, Australia. We operate globally.",
   },
   {
     q: "How does pricing work?",
@@ -346,9 +343,9 @@ export const TEAM = [
 ];
 
 export const FINAL_CTA = {
-  heading: "Let's redesign your business.",
-  body: "If you're evaluating AI as infrastructure — not a pilot — start with a strategy session. If we're not the right partner, we'll say so.",
-  cta: { label: "Talk to an AI architect", href: "/discovery" },
+  heading: "We build for those who refuse to move slowly.",
+  body: "We don't take every project. If you're evaluating AI as infrastructure—not a pilot—we should talk. Bring a workflow that hurts or a vision you need to ship.",
+  cta: { label: "Apply for a partnership", href: "/discovery" },
 };
 
 export const DISCOVERY = {
