@@ -223,28 +223,17 @@ export default function HomePage() {
         </div>
       </ActSection>
 
-      <ActSection scene="cta" className="pb-36">
-        <div className="rule" />
-        <div className="pt-16 text-center md:pt-20 md:text-left">
-          <Reveal as="span" className="block font-mono text-[11px] uppercase tracking-[0.18em] text-faint">
+      <ActSection scene="cta" className="relative flex min-h-[100svh] flex-col items-center justify-center pb-20 pt-32">
+        <div className="pointer-events-none absolute inset-0 z-0 bg-[radial-gradient(ellipse_at_center,transparent_0%,rgba(5,5,5,0.75)_100%)]" aria-hidden />
+        <div className="relative z-10 flex flex-col items-center text-center px-4">
+          <Reveal as="span" className="block font-mono text-[11px] uppercase tracking-[0.18em] text-faint mb-8">
             ( {sec("cta").no} ) — {sec("cta").label}
           </Reveal>
-          <TextReveal as="h2" className="mt-6 font-display text-[clamp(44px,7vw,100px)] font-semibold leading-[0.94] tracking-display text-ink">
-            <WordReveal text={FINAL_CTA.heading} />
+          <TextReveal as="h2" className="font-display text-[clamp(44px,7vw,110px)] font-semibold leading-[0.94] tracking-display text-ink mix-blend-plus-lighter drop-shadow-[0_0_30px_rgba(255,255,255,0.15)]">
+            <WordReveal text="Build a product with us." />
           </TextReveal>
-          <Reveal delay={0.08} className="mt-6 flex justify-center md:justify-start">
-            <EchoLine />
-          </Reveal>
-          <Reveal delay={0.12}>
-            <div className="mt-10 grid gap-8 md:grid-cols-[1.1fr_0.9fr] md:items-center">
-              <p className="mx-auto max-w-[440px] text-[18px] leading-relaxed text-mute md:mx-0 md:text-[19px]">
-                {FINAL_CTA.body}
-              </p>
-              <div className="flex flex-wrap justify-center gap-3 md:justify-start">
-                <MagneticButton href={FINAL_CTA.cta.href}>{FINAL_CTA.cta.label}</MagneticButton>
-                <EmailArchitectButton />
-              </div>
-            </div>
+          <Reveal delay={0.12} className="mt-12 flex justify-center">
+            <MagneticButton href="/contact">Start the conversation</MagneticButton>
           </Reveal>
         </div>
       </ActSection>

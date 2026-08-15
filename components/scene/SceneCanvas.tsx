@@ -214,7 +214,7 @@ export default function SceneCanvas() {
 
       const p = st.pointer;
       const ry = time * 0.065 + p.tx * 0.55 * (1 - globeAmt * 0.55);
-      const groupX = baseX * (1 - formed * 0.75) * (window.innerWidth < 900 ? 0.85 : 1);
+      const groupX = baseX * (1 - formed * 1.0) * (window.innerWidth < 900 ? 0.85 : 1);
       actEase += ((p.inside ? 1 : 0) - actEase) * 0.07;
       const reach = actEase * (1 - formed * 0.65);
       const pwx = p.tx * 6.4 - groupX;

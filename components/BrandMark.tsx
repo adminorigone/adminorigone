@@ -46,14 +46,16 @@ export default function BrandMark({
         >
           {/* Inner Core */}
           <circle cx="12" cy="12" r="2.5" fill="currentColor" style={{ filter: "drop-shadow(0 0 6px rgba(255,176,0,0.85))" }} />
-          {/* Middle Orbit */}
-          <circle cx="12" cy="12" r="6" stroke="currentColor" strokeWidth="1" strokeDasharray="1 3" strokeLinecap="round" opacity="0.6" />
-          {/* Outer Mesh */}
-          <circle cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="1" opacity="0.15" />
-          <path d="M12 2C17.5228 2 22 6.47715 22 12" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" opacity="0.9" />
-          {/* Connection Nodes */}
-          <circle cx="22" cy="12" r="1" fill="currentColor" />
-          <circle cx="12" cy="2" r="1" fill="currentColor" />
+          
+          {/* Main "O" ring */}
+          <circle cx="12" cy="12" r="8.5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" opacity="0.9" />
+          
+          {/* Tech slash cutting through */}
+          <path d="M19 5L5 19" stroke="currentColor" strokeWidth="1.5" strokeLinecap="square" opacity="0.4" />
+          
+          {/* Data nodes */}
+          <circle cx="19" cy="5" r="1.5" fill="currentColor" opacity="0.8" />
+          <circle cx="5" cy="19" r="1.5" fill="currentColor" opacity="0.8" />
         </svg>
       )}
       <span>
