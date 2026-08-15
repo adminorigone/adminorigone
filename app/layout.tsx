@@ -27,14 +27,24 @@ const mono = IBM_Plex_Mono({
 
 export const metadata: Metadata = {
   title: {
-    default: `${SITE.name} — AI Consultancy`,
+    default: `${SITE.name} — Enterprise AI Product Agency`,
     template: `%s — ${SITE.name}`,
   },
   description: SITE.description,
+  keywords: [
+    "Enterprise AI Consulting",
+    "AI Product Agency Australia",
+    "AI Product Agency Sydney",
+    "Custom AI Workflows USA",
+    "AI Automation Agency Europe",
+    "Technical AI Audits",
+    "LLM Development Company",
+    "Machine Learning Consulting",
+  ],
   metadataBase: new URL(`https://${SITE.domain}`),
   alternates: { canonical: "/" },
   openGraph: {
-    title: `${SITE.name} — Redesign operations with AI`,
+    title: `${SITE.name} — Redesign operations with AI in US, Europe, and Australia`,
     description: SITE.tagline,
     type: "website",
     siteName: SITE.name,
@@ -42,17 +52,60 @@ export const metadata: Metadata = {
     locale: "en_US",
   },
   twitter: {
-    // `summary_large_image` promises a wide image; there is no OG asset yet, so
-    // the large card would render broken. Switch back once one exists.
     card: "summary",
-    title: `${SITE.name} — Redesign operations with AI`,
+    title: `${SITE.name} — AI Product Engineering for Tier 1 Enterprises`,
     description: SITE.tagline,
   },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
+};
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": ["ProfessionalService", "Organization"],
+  name: SITE.name,
+  description: SITE.description,
+  url: `https://${SITE.domain}`,
+  logo: `https://${SITE.domain}/icon.svg`,
+  address: {
+    "@type": "PostalAddress",
+    addressLocality: "Sydney",
+    addressCountry: "AU",
+  },
+  areaServed: ["US", "GB", "AU", "EU"],
+  contactPoint: {
+    "@type": "ContactPoint",
+    email: SITE.email,
+    contactType: "customer support",
+  },
+  sameAs: [SITE.linkedin],
+  knowsAbout: [
+    "Artificial Intelligence",
+    "Workflow Automation",
+    "Software Engineering",
+    "Technical Audits",
+    "Large Language Models",
+  ],
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className={`${display.variable} ${sans.variable} ${mono.variable}`}>
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+      </head>
       <body className="grain font-sans">
         <a href="#main" className="skip-link">
           Skip to content
@@ -60,9 +113,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <SmoothScroll />
         <LiveExperience>
           <Navbar />
-          {/* tabIndex -1 so the skip link can actually move focus here. Without
-              it the browser scrolls but leaves focus on <body>, and the next Tab
-              restarts from the top of the page. */}
           <main id="main" tabIndex={-1}>
             {children}
           </main>

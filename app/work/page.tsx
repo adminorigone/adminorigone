@@ -16,10 +16,11 @@ export default function WorkPage() {
         <Reveal as="span" className="block font-mono text-[11px] uppercase tracking-[0.18em] text-faint">
           ( Work ) — Documentary, not a gallery
         </Reveal>
+        <h1 className="sr-only">Enterprise AI Work & Case Studies — Origo One (USA, Europe, Australia)</h1>
         <Reveal>
-          <h1 className="mt-6 max-w-[14ch] font-display text-[clamp(40px,7vw,84px)] font-semibold leading-[1.02] tracking-display text-ink">
+          <h2 className="mt-6 max-w-[14ch] font-display text-[clamp(40px,7vw,84px)] font-semibold leading-[1.02] tracking-display text-ink">
             Proof that operations can be redesigned.
-          </h1>
+          </h2>
         </Reveal>
         <Reveal delay={0.1}>
           <p className="mt-7 max-w-[520px] text-[18px] leading-relaxed text-mute md:text-[19px]">

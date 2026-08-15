@@ -16,10 +16,11 @@ export default function AboutPage() {
         <Reveal as="span" className="block font-mono text-[11px] uppercase tracking-[0.18em] text-faint">
           ( About )
         </Reveal>
+        <h1 className="sr-only">About Origo One — Enterprise AI Consulting & Automation Firm serving USA, Europe, and Australia</h1>
         <Reveal>
-          <h1 className="mt-6 whitespace-pre-line font-display text-[clamp(40px,7vw,88px)] font-semibold leading-[0.98] tracking-display text-ink">
+          <h2 className="mt-6 whitespace-pre-line font-display text-[clamp(40px,7vw,88px)] font-semibold leading-[0.98] tracking-display text-ink">
             {ABOUT.heading}
-          </h1>
+          </h2>
         </Reveal>
         <Reveal delay={0.1}>
           <p className="mt-8 max-w-[680px] text-[19px] leading-relaxed text-mute md:text-[20px]">
