@@ -73,6 +73,9 @@ export const metadata: Metadata = {
       "max-snippet": -1,
     },
   },
+  verification: {
+    google: "VbSdP_gxZk87KyaERO44oYpBhSjIQyDm53YDGmQz-hs",
+  },
 };
 
 const jsonLd = {

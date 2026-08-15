@@ -26,7 +26,6 @@ export default function LiveExperience({ children }: { children: React.ReactNode
         aria-hidden
       />
       <CustomCursor />
-      <SystemStatus />
       <InteractionHint />
       <MobileDock />
       <div className="relative z-[2]">{children}</div>

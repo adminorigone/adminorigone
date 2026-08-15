@@ -14,7 +14,7 @@ import BrandMark from "@/components/BrandMark";
 import MagneticButton from "@/components/MagneticButton";
 import { useSceneOptional } from "@/components/scene/SceneProvider";
 
-const ACCENT_WORD = "business";
+const ACCENT_WORD = "production";
 
 export default function Hero() {
   const reduce = useReducedMotion();
