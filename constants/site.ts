@@ -1,23 +1,22 @@
 // ─────────────────────────────────────────────────────────────
 // Brand source of truth — Origo One
-// Positioning: Enterprise AI Product Agency.
+// Positioning: AI Product Agency. We build. You own.
 // Core Pillars: Workflow Automation | Tech Audits | AI Product Engineering
-// Market: United States · Europe · Australia · Middle East (Dubai, UAE)
 // ─────────────────────────────────────────────────────────────
 
 export const SITE = {
   name: "Origo One",
   shortName: "Origo",
   legalName: "Origo One",
-  tagline: "We turn AI concepts into production reality for Tier-1 enterprises globally.",
+  tagline: "AI products built fast, shipped properly, owned by you.",
   description:
-    "Origo One is an elite AI product agency and consulting firm. We untangle technical debt, automate high-value workflows, and engineer production-grade AI applications for ambitious enterprises globally.",
+    "Origo One is an AI product agency. We build workflow automation systems, run technical audits, and ship full-stack AI products for founders and operators who are ready to move.",
   email: "hello@oorigone.com",
   domain: "oorigone.com",
   linkedin: "https://linkedin.com/company/origo-one",
   calLink: "https://cal.com/origo-one/strategy",
   abn: "ABN 00 000 000 000",
-  location: "Global",
+  location: "Sydney · Global",
   markets: ["Global"],
 };
 
@@ -35,26 +34,26 @@ export const NAV = [
 
 export const HERO = {
   brand: "Origo One",
-  headline: "Stop piloting AI. Start shipping products.",
+  headline: "Build the AI product. Ship it. Own it.",
   subline:
-    "We are an Enterprise AI Product Agency. We untangle technical debt, collapse manual workflows, and turn raw ideas into secure, production-ready AI software for global enterprises.",
-  primaryCta: { label: "Talk to an AI architect", href: "/discovery" },
-  secondaryCta: { label: "See what's possible", scene: "poss" },
+    "Most AI projects die in a slide deck. We take the idea from whiteboard to production — automation, architecture, and full-stack AI engineering. No fluff, no retainers, no middlemen.",
+  primaryCta: { label: "Start a project", href: "/discovery" },
+  secondaryCta: { label: "See how it works", scene: "poss" },
 };
 
 export const HOME_SECTIONS = [
-  { id: "hero", no: "00", label: "Origin" },
-  { id: "proof", no: "01", label: "Signal" },
-  { id: "shift", no: "02", label: "Workflow Automation" },
-  { id: "poss", no: "03", label: "Possibility" },
-  { id: "infrastructure", no: "04", label: "Tech Audits" },
-  { id: "entrance", no: "05", label: "Idea to Reality" },
-  { id: "cap", no: "06", label: "Capabilities" },
-  { id: "machine", no: "07", label: "How we build" },
+  { id: "hero", no: "00", label: "Start" },
+  { id: "proof", no: "01", label: "Results" },
+  { id: "shift", no: "02", label: "The problem" },
+  { id: "poss", no: "03", label: "What we build" },
+  { id: "infrastructure", no: "04", label: "The fix" },
+  { id: "entrance", no: "05", label: "The build" },
+  { id: "cap", no: "06", label: "Services" },
+  { id: "machine", no: "07", label: "How" },
   { id: "work", no: "08", label: "Shipped" },
-  { id: "cta", no: "09", label: "Partnership" },
-  { id: "clarity", no: "10", label: "Clarity" },
-  { id: "ship", no: "11", label: "Studio" },
+  { id: "cta", no: "09", label: "Work with us" },
+  { id: "clarity", no: "10", label: "FAQ" },
+  { id: "ship", no: "11", label: "Close" },
 ] as const;
 
 export type HomeSectionId = (typeof HOME_SECTIONS)[number]["id"];
@@ -66,28 +65,28 @@ export function homeSection(id: HomeSectionId) {
 export const CHAPTERS = [
   {
     id: "shift",
-    headline: "Manual workflows are a tax on your growth.",
-    body: "Businesses are drowning in manual tasks and invisible bottlenecks. Growth outpaces process, and operations become fragile. We run a deep discovery audit, locate your exact pain points, and deploy AI-native automation to collapse those workflows.",
+    headline: "You're losing velocity to processes built for a different era.",
+    body: "Every fast-growing company hits the same wall: the manual workflows that got you here are now slowing you down. Approvals in Slack threads. Data stuck in spreadsheets. Reporting that takes a week. We map those exact bottlenecks and replace them with systems that run without babysitting.",
     psychology: "Recognition + urgency",
   },
   {
     id: "infrastructure",
-    headline: "Your infrastructure shouldn't be a liability.",
-    body: "Scaling companies hit architectural ceilings and security vulnerabilities. When the tech stack gets messy, velocity drops. We are AI-native and security-first. We audit your architecture, untangle the mess, and secure your systems for global scale.",
+    headline: "Technical debt is a silent tax on every decision you make.",
+    body: "Slow deploys, brittle integrations, security gaps you haven't had time to close — these compound. We run a deep technical audit, tell you exactly what's costing you, and give you a clear path forward.",
     psychology: "Security + clarity",
   },
   {
     id: "entrance",
-    headline: "You have the idea. We ship the product.",
-    body: "Founders and enterprises have breakthrough AI ideas but lack the elite execution required to build them. That is where we step in. You bring the vision. We architect the solution, engineer the application, and ship it to production.",
+    headline: "The idea is clear. The execution is the hard part.",
+    body: "You know what you want to build. The gap is between the vision and a working product in production. We close that gap — architecture, model selection, engineering, and launch. You own everything on day one.",
     psychology: "Trust + positioning",
   },
 ];
 
 export const METRICS = [
-  { value: 1000, suffix: "+", label: "users on platforms we've put in production" },
-  { value: 3, prefix: "", suffix: " Pillars", label: "Workflow Automation, Tech Audits, AI Products" },
-  { value: 6, from: 4, prefix: "4–", suffix: " wks", label: "typical path from idea to live system" },
+  { value: 1000, suffix: "+", label: "users on products we've shipped to production" },
+  { value: 3, prefix: "", suffix: " pillars", label: "Automation · Architecture · AI Products" },
+  { value: 6, from: 4, prefix: "4–", suffix: " wks", label: "from first call to live system" },
 ];
 
 export type Transformation = {
@@ -109,64 +108,64 @@ export const TRANSFORMATIONS: Transformation[] = [
     slug: "workflow-automation",
     tag: "01",
     from: "Manual Operations",
-    to: "Autonomous Workflows",
+    to: "Automated Systems",
     summary:
-      "Replace fragile handoffs and spreadsheets with systems that route, decide, and escalate with judgment.",
+      "We find the workflows bleeding your team's time and replace them with systems that run on their own.",
     problem:
-      "Your team is drowning in repetitive tasks. Work lives in inboxes and tribal knowledge, creating massive operational bottlenecks.",
+      "Your team is executing the same tasks manually every week. That time adds up to tens of thousands in salary spent on things a system should handle.",
     approach:
-      "We run a discovery call to map your critical workflows, identify the exact pain points, and ship an AI-native automation layer your team controls.",
-    ideal: "Operators and COOs with clear volume pain and measurable cycle times.",
+      "We map your operations, identify the highest-ROI automation targets, and ship a production system with full observability and clear escalation paths.",
+    ideal: "COOs and ops leaders with measurable, repeating volume pain.",
     timeline: "4–8 weeks",
     deliverables: [
-      "Workflow audit & opportunity map",
-      "Production automation architecture",
+      "Operations audit & automation map",
+      "Production automation system",
       "Human-in-the-loop controls",
-      "Observability & escalation paths",
+      "Monitoring & escalation paths",
     ],
-    package: "Outcome partnership",
+    package: "Fixed scope",
   },
   {
     slug: "tech-audits",
     tag: "02",
-    from: "Fragile Infrastructure",
-    to: "Secure Architecture",
+    from: "Technical Debt",
+    to: "Scalable Architecture",
     summary:
-      "Audit your tech stack, untangle the mess, and secure your systems for enterprise scale.",
+      "We go deep into your codebase, find what's slowing you down, and give you a clear path forward.",
     problem:
-      "Scaling has resulted in technical debt. Systems are fragile, security is an afterthought, and new features take months to ship.",
+      "Features that should take days take weeks. Your team is scared to touch certain parts of the codebase. Security hasn't been properly reviewed since launch.",
     approach:
-      "We are AI-native and security-first. We dive deep into your codebase, identify critical vulnerabilities, and architect a scalable, secure foundation.",
-    ideal: "CTOs and technical founders hitting a growth ceiling due to tech debt.",
+      "We audit your architecture end to end — code quality, security posture, performance, scalability. You get a prioritised roadmap with clear impact estimates.",
+    ideal: "CTOs and technical founders who've hit a ceiling and need an outside view.",
     timeline: "2–4 weeks",
     deliverables: [
-      "Comprehensive codebase & security audit",
-      "Architecture untangling roadmap",
-      "AI-native security protocols",
-      "Performance optimization report",
+      "Full codebase & security audit",
+      "Prioritised refactor roadmap",
+      "Performance & security report",
+      "Architecture recommendations",
     ],
-    package: "Audit sprint",
+    package: "Fixed scope",
   },
   {
     slug: "idea-to-reality",
     tag: "03",
-    from: "Raw Concept",
-    to: "Production Application",
+    from: "Concept",
+    to: "Live Product",
     summary:
-      "Ship AI-native product surfaces that create new revenue. You bring the idea, we build the reality.",
+      "You bring the idea. We architect, engineer, and ship the production system — you own it outright.",
     problem:
-      "The market expects intelligence. You have a vision for a disruptive AI product, but lack the elite engineering team to build it fast and securely.",
+      "You have a clear vision for an AI product but need a team that can move fast and build it properly — not one that drags it out over six months.",
     approach:
-      "We productize AI where it earns retention and revenue. From concept mapping to frontend execution and backend infrastructure, we ship it.",
-    ideal: "Founders and product leaders ready to ship a real AI surface in weeks, not quarters.",
+      "Fixed scope, fixed timeline. We pick the right model, build the product, integrate payments and auth, and ship to production. Full IP transfer at launch.",
+    ideal: "Founders and product leaders who are ready to move now.",
     timeline: "4–8 weeks",
     deliverables: [
-      "Scoped product MVP with fixed quote",
-      "Custom AI model integration",
-      "Payments, auth, and infra you own",
-      "Full IP transfer on launch",
+      "Fixed-scope product build",
+      "AI model selection & integration",
+      "Payments, auth, infrastructure",
+      "Full IP transfer at launch",
     ],
-    package: "Production system",
+    package: "Fixed scope",
   },
 ];
 
@@ -184,23 +183,23 @@ export const SERVICES = TRANSFORMATIONS.map((t) => ({
 export const PROCESS = [
   {
     step: "01",
-    title: "Strategy session",
-    body: "A focused conversation with an AI architect. We diagnose the real constraint — not the requested feature — and tell you honestly if we're the right partner.",
+    title: "First call",
+    body: "A direct conversation — no deck, no agenda. We listen to the problem, ask the hard questions, and tell you honestly whether we can help and what it would take.",
   },
   {
     step: "02",
     title: "Discovery Sprint",
-    body: "A paid one-week engagement. Opportunity map, architecture options, ROI framing, and a fixed-scope proposal. The fee credits toward production.",
+    body: "A paid one-week engagement. We map the opportunity, propose the architecture, frame the ROI, and give you a fixed-scope proposal. The fee applies to production.",
   },
   {
     step: "03",
-    title: "Build in the open",
-    body: "Weekly live demos on staging. Daily written updates. You see the system form — not a black box delivered at the end.",
+    title: "Build",
+    body: "We ship in the open. Weekly demos on staging. Written updates every workday. You see the system being built — not a black box handed over at the end.",
   },
   {
     step: "04",
-    title: "Production + ownership",
-    body: "We launch, transfer full IP, document the system, and stay for a stabilization window. The product is yours.",
+    title: "Launch & handover",
+    body: "We go live, transfer the full repo and infrastructure, document everything, and stay available through stabilisation. The product is yours.",
   },
 ];
 
@@ -208,39 +207,39 @@ export const PACKAGES = [
   {
     name: "Discovery & Audit",
     price: "Fixed fee",
-    detail: "Deep operational scan across workflows or codebase. Prioritized roadmap with estimated impact and sequencing.",
-    filter: "For leaders who need clarity before commitment.",
+    detail: "A deep scan of your operations or codebase. You get a prioritised roadmap with impact estimates — clarity before commitment.",
+    filter: "For leaders who need to know what they're dealing with before signing anything.",
   },
   {
-    name: "Workflow Prototype",
+    name: "Workflow Build",
     price: "Fixed scope",
-    detail: "A production-shaped proof of an automated workflow — real data paths, real UX — designed to decide go/no-go fast.",
-    filter: "For teams validating a high-stakes automation bet.",
+    detail: "A production automation system built around your highest-impact workflow. Real infrastructure, not a prototype.",
+    filter: "For teams who've identified the bottleneck and want it solved.",
   },
   {
-    name: "Production App Build",
-    price: "Outcome package",
-    detail: "Ship the AI application. Fixed quote, ship date, weekly demos, IP transfer. From idea to reality.",
-    filter: "For founders ready to ship a new product.",
+    name: "Product Build",
+    price: "Fixed scope",
+    detail: "Full AI product from concept to launch. Fixed quote, fixed timeline, weekly demos, IP transfer. No retainers.",
+    filter: "For founders who are ready to ship.",
   },
 ];
 
 export const FAQS = [
   {
-    q: "Are you an outsourcing shop?",
-    a: "No. We are a global AI Product Agency. We redesign operations and ship the systems that make that redesign real. Clients hire us for judgment and outcomes — not seat-filling.",
+    q: "Are you a dev shop?",
+    a: "No. We're a small, focused AI product agency. We don't take on generic development work. We take on problems where AI or automation creates a meaningful, measurable outcome — and we build the system that delivers it.",
   },
   {
     q: "Where are you based?",
-    a: "We are an international agency with our core presence in Sydney, Australia. We operate globally.",
+    a: "Sydney, Australia. We work remotely with founders and teams globally.",
   },
   {
     q: "How does pricing work?",
-    a: "Outcomes, not hours. Discovery and production are fixed-scope packages with a clear ship date. If scope expands, we quote the addition — no surprise invoices.",
+    a: "Fixed scope, fixed price. We quote the project upfront and hold the number. If scope changes, we quote the change before doing it — no surprise invoices.",
   },
   {
-    q: "Who owns the IP?",
-    a: "You do. On final payment: repo, infrastructure access, design files, and documentation. We keep nothing and license nothing back.",
+    q: "Who owns everything after launch?",
+    a: "You do. The repo, the infrastructure, the design files, the documentation — all transferred on final payment. We retain nothing.",
   },
 ];
 
@@ -262,7 +261,7 @@ export const CASE_STUDIES: CaseStudy[] = [
     url: "https://hirecarmarketplace.com.au",
     tag: "Marketplace · Operations",
     summary:
-      "From phone quotes and spreadsheets → a two-sided marketplace with instant booking and payments for Australian operators.",
+      "Australian car-hire operators were running on phone calls and spreadsheets. We built a two-sided marketplace with instant booking, payments, and trust signals — and shipped it.",
     result: "~1,000 registered users · live",
     featured: true,
     hasStory: true,
@@ -270,9 +269,9 @@ export const CASE_STUDIES: CaseStudy[] = [
   {
     slug: "medsage",
     name: "MedSage AI",
-    tag: "Company Intelligence · Education",
+    tag: "AI Product · Education",
     summary:
-      "From passive study materials → an LLM platform that grades recall and drives spaced repetition for medical students.",
+      "Medical students needed more than passive study materials. We built an LLM platform that grades recall, adapts difficulty, and drives spaced repetition.",
     result: "50+ beta users",
   },
 ];
@@ -280,26 +279,26 @@ export const CASE_STUDIES: CaseStudy[] = [
 export const HIRECAR_CASE = {
   title: "HireCarMarketplace",
   url: "hirecarmarketplace.com.au",
-  chapter: "From manual ops → intelligent marketplace",
+  chapter: "From manual ops to live marketplace",
   intro:
-    "Independent Australian car-hire operators lived on phone calls and spreadsheets. We redesigned the operating model into a two-sided marketplace — listing, booking, payment, and trust — now live with ~1,000 registered users.",
+    "Independent Australian car-hire operators were running on phone calls and spreadsheets. We redesigned the entire operating model into a two-sided marketplace — listing, booking, payment, and trust — now live with ~1,000 registered users.",
   context:
-    "Small operators couldn't absorb aggregator commissions. Renters compared prices across a dozen tabs. Every slow quote was a lost booking.",
+    "Small operators couldn't compete with aggregator commissions. Renters compared prices across a dozen tabs. Every slow quote was a lost booking.",
   constraints: [
     "Operators needed to list a vehicle in under 10 minutes",
     "Payments had to clear upfront with deposits and refunds",
-    "Trust signals had to feel premium without enterprise budgets",
-    "Ship to production fast enough to prove the model",
+    "Trust signals had to feel credible without enterprise budgets",
+    "Had to ship to production fast enough to validate the model",
   ],
   thinking:
-    "This wasn't a website problem. It was an operations problem: quote latency, inventory visibility, and payment friction. The product had to collapse that loop.",
+    "This wasn't a website problem — it was an operations problem. Quote latency, inventory visibility, and payment friction were the real constraints. The product had to collapse that entire loop.",
   architecture:
-    "Next.js + Supabase for realtime availability, Stripe for payments, OAuth for identity, AI-assisted listing creation to remove operator friction.",
+    "Next.js + Supabase for real-time availability, Stripe for payments, OAuth for identity, AI-assisted listing creation to remove operator friction.",
   execution:
     "Fixed scope, weekly demos, production deployment on infrastructure the client owns. No black-box handoff.",
   results: [
     { value: "~1,000", label: "registered users" },
-    { value: "3 taps", label: "search → confirmed booking" },
+    { value: "3 taps", label: "search to confirmed booking" },
     { value: "Live", label: "production marketplace" },
   ],
   stack: ["Next.js", "Supabase", "Stripe", "OAuth", "Tailwind", "Vercel"],
@@ -314,24 +313,24 @@ export const HIRECAR_CASE = {
 };
 
 export const ABOUT = {
-  heading: "Enterprise thinking.\nStartup execution.",
-  body: "Origo One is an elite, international AI product agency based in Sydney. We start at the origin of the constraint — not the feature request — and ship the operating layer that follows. We are not an outsourcing bench. We are the team you bring in when you have an idea, and the answer has to ship securely and flawlessly.",
+  heading: "We build.\nYou own.",
+  body: "Origo One is a small, focused AI product agency based in Sydney. We take on problems where automation and AI create a real, measurable outcome — and we build the system that delivers it. We don't do retainers, we don't do generic software development, and we don't hand you a slide deck. We ship production systems and transfer them to you on day one.",
   philosophy: [
     {
-      title: "Outcomes over headcount",
-      body: "We sell redesigned operations and production systems — never developer-months as a product.",
+      title: "Outcomes, not hours",
+      body: "Every engagement is scoped to a result — not a monthly retainer. We quote the project, hold the number, and deliver.",
     },
     {
-      title: "Judgment before models",
-      body: "The hard part is knowing which workflows deserve intelligence. Models are the easy part.",
+      title: "Judgment first",
+      body: "Most AI projects fail because the wrong problem gets automated. We start at the root — the actual constraint — before writing a line of code.",
     },
     {
-      title: "Transparent by default",
-      body: "Weekly demos, daily writing, architecture you can read. Prestige without opacity.",
+      title: "You see everything",
+      body: "Weekly demos on staging. Written updates every workday. Architecture you can read. No black boxes.",
     },
     {
-      title: "Security first",
-      body: "Scaling companies can't afford fragile tech debt. We audit, secure, and build with AI-native architecture.",
+      title: "You own everything",
+      body: "Repo, infrastructure, design, documentation — transferred on final payment. We retain no licenses, no access.",
     },
   ],
 };
@@ -344,19 +343,20 @@ export const TEAM = [
 ];
 
 export const FINAL_CTA = {
-  heading: "We build for those who refuse to move slowly.",
-  body: "We don't take every project. If you're evaluating AI as infrastructure—not a pilot—we should talk. Bring a workflow that hurts or a vision you need to ship.",
-  cta: { label: "Apply for a partnership", href: "/discovery" },
+  heading: "Have a problem worth solving?",
+  body: "We take on a small number of projects at a time. If you have a workflow that's costing you, a product that needs to ship, or a codebase that needs fixing — let's talk.",
+  cta: { label: "Start the conversation", href: "/discovery" },
 };
 
 export const DISCOVERY = {
-  heading: "Strategy session",
+  heading: "First call",
   subline:
-    "Forty focused minutes with an AI architect. Bring a workflow that hurts or an idea you want to build. Leave with clarity.",
+    "A direct conversation — no deck, no sales process. Bring the problem or the idea. We'll tell you what we think and whether we're the right team for it.",
   points: [
-    "We diagnose the constraint or map out the product vision",
-    "Honest fit check — we decline misaligned work",
-    "If there's a path, you'll see the shape of a Discovery Sprint",
-    "No pitch deck theater",
+    "We diagnose the actual constraint, not the surface request",
+    "Honest fit assessment — we turn down work that isn't right",
+    "If there's a path, you'll leave with a clear shape of what comes next",
+    "No pitch, no pressure",
   ],
 };
+

@@ -74,7 +74,7 @@ export default function HomePage() {
       <ActSection scene="proof">
         <SectionHead no={sec("proof").no} label={sec("proof").label} />
         <TextReveal as="h2" className="max-w-[16ch] font-display text-[clamp(32px,5vw,64px)] font-semibold leading-[1.05] tracking-display text-ink">
-          <WordReveal text="Every claim on this page is tied to a number." />
+          <WordReveal text="Numbers first. Everything else follows." />
         </TextReveal>
         <div className="mt-12 grid grid-cols-1 gap-px border border-line bg-line/70 md:grid-cols-3">
           {METRICS.map((m, i) => (
@@ -108,7 +108,7 @@ export default function HomePage() {
       <ActSection scene="poss">
         <SectionHead no={sec("poss").no} label={sec("poss").label} />
         <TextReveal as="h2" className="mb-2 max-w-[15ch] font-display text-[clamp(32px,5vw,64px)] font-semibold leading-[1.05] tracking-display text-ink">
-          <WordReveal text="What could the signal become?" />
+          <WordReveal text="What we actually build." />
         </TextReveal>
         <PossibilityExplorer />
       </ActSection>
@@ -138,9 +138,9 @@ export default function HomePage() {
       </ActSection>
 
       <ActSection scene="cap">
-        <SectionHead no={sec("cap").no} label={sec("cap").label} aside="Outcomes · Not seats" />
+        <SectionHead no={sec("cap").no} label={sec("cap").label} />
         <TextReveal as="h2" className="mb-10 max-w-[14ch] font-display text-[clamp(28px,3.8vw,48px)] font-semibold leading-[1.08] tracking-display text-ink">
-          <WordReveal text="We don't sell software. We redesign how work moves." />
+          <WordReveal text="Three things. Done properly." />
         </TextReveal>
         <TransformationLedger items={TRANSFORMATIONS.slice(0, 4)} />
         <Reveal className="mt-8">
@@ -151,7 +151,7 @@ export default function HomePage() {
       <ActSection scene="machine">
         <SectionHead no={sec("machine").no} label={sec("machine").label} />
         <TextReveal as="h2" className="mb-2 max-w-[15ch] font-display text-[clamp(28px,3.8vw,48px)] font-semibold leading-[1.08] tracking-display text-ink">
-          <WordReveal text="A product machine, not a proposal." />
+          <WordReveal text="How a build actually works." />
         </TextReveal>
         <MachineStages />
       </ActSection>
@@ -215,7 +215,7 @@ export default function HomePage() {
           <div>
             <SectionHead no={sec("clarity").no} label={sec("clarity").label} />
             <TextReveal as="h2" className="font-display text-[clamp(28px,3.5vw,44px)] font-semibold leading-[1.08] tracking-display text-ink">
-              <WordReveal text="Questions executives actually ask." />
+              <WordReveal text="Common questions." />
             </TextReveal>
           </div>
           <FAQ />
@@ -235,10 +235,12 @@ export default function HomePage() {
             ( {sec("ship").no} ) — {sec("ship").label}
           </span>
           <h2 className="font-display text-[clamp(44px,7vw,110px)] font-semibold leading-[0.94] tracking-display text-ink mix-blend-plus-lighter drop-shadow-[0_0_30px_rgba(255,255,255,0.15)]">
-            Distributed <br className="hidden md:block" /> studio.
+            We build.
+            <br className="hidden md:block" />
+            You own it.
           </h2>
           <p className="mt-8 max-w-[420px] text-[18px] leading-relaxed text-mute mix-blend-plus-lighter">
-            Senior-only, aligned to your clock. Daily written updates. Weekly live demos. You always know exactly where the system stands.
+            No retainers. No black boxes. No surprise invoices. Fixed scope, fixed price — and everything transfers to you at launch.
           </p>
           <div className="mt-12 flex justify-center">
             <MagneticButton href="/contact">Apply for partnership</MagneticButton>
