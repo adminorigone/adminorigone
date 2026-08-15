@@ -1,11 +1,13 @@
 "use client";
 
 import dynamic from "next/dynamic";
+import { usePathname } from "next/navigation";
 import { SceneProvider } from "@/components/scene/SceneProvider";
 import CustomCursor from "@/components/scene/CustomCursor";
-import SystemStatus from "@/components/scene/SystemStatus";
+
 import InteractionHint from "@/components/scene/InteractionHint";
 import MobileDock from "@/components/scene/MobileDock";
+import { useEffect, useState } from "react";
 
 const SceneCanvas = dynamic(() => import("@/components/scene/SceneCanvas"), {
   ssr: false,
@@ -14,9 +16,31 @@ const SceneCanvas = dynamic(() => import("@/components/scene/SceneCanvas"), {
 
 /** Full liveliness layer — particles, cursor, HUD, mobile dock. */
 export default function LiveExperience({ children }: { children: React.ReactNode }) {
+  const pathname = usePathname();
+  const isHome = pathname === "/";
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  const getAmbientClass = () => {
+    if (!mounted || isHome) return "";
+    if (pathname.startsWith("/careers")) return "ambient-careers";
+    if (pathname.startsWith("/about")) return "ambient-about";
+    if (pathname.startsWith("/process")) return "ambient-process";
+    if (pathname.startsWith("/services") || pathname.startsWith("/work")) return "ambient-services";
+    return "ambient-default";
+  };
+
   return (
     <SceneProvider>
-      <SceneCanvas />
+      {isHome && <SceneCanvas />}
+      
+      {!isHome && mounted && (
+        <div className={`pointer-events-none fixed inset-0 z-0 ${getAmbientClass()}`} aria-hidden />
+      )}
+
       {/* Reading lane + vignette — keep copy legible over the particle field */}
       <div
         className="pointer-events-none fixed inset-0 z-[1]"

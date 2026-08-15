@@ -467,7 +467,7 @@ export const OPEN_ROLES: Role[] = [
   {
     slug: "ai-growth-intern",
     title: "AI Growth Intern",
-    location: "Remote / Bhubaneswar",
+    location: "Remote",
     type: "3 months (extendable)",
     compensation: "Commission-based",
     status: "Open",

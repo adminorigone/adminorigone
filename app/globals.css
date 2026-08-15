@@ -308,3 +308,11 @@ main:focus-visible {
     animation: none;
   }
 }
+
+/* Dynamic Ambient Backgrounds */
+.ambient-careers { background: radial-gradient(circle at 80% 20%, rgba(67, 40, 137, 0.15), transparent 40%), radial-gradient(circle at 20% 80%, rgba(40, 100, 137, 0.1), transparent 50%); animation: breathe 8s ease-in-out infinite alternate; }
+.ambient-about { background: radial-gradient(circle at 70% 30%, rgba(137, 70, 40, 0.12), transparent 45%), radial-gradient(circle at 30% 70%, rgba(137, 40, 40, 0.1), transparent 50%); animation: breathe 10s ease-in-out infinite alternate; }
+.ambient-process { background: radial-gradient(circle at 50% 0%, rgba(40, 137, 90, 0.12), transparent 50%), radial-gradient(circle at 50% 100%, rgba(40, 100, 137, 0.1), transparent 50%); animation: breathe 9s ease-in-out infinite alternate; }
+.ambient-services { background: radial-gradient(circle at 20% 20%, rgba(100, 40, 137, 0.12), transparent 45%), radial-gradient(circle at 80% 80%, rgba(137, 80, 40, 0.1), transparent 50%); animation: breathe 11s ease-in-out infinite alternate; }
+.ambient-default { background: radial-gradient(circle at 50% 50%, rgba(80, 80, 80, 0.08), transparent 60%); }
+@keyframes breathe { 0% { opacity: 0.8; transform: scale(1); } 100% { opacity: 1; transform: scale(1.05); } }
