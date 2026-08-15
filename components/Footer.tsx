@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { NAV, SITE } from "@/constants/site";
+import { NAV, SITE, CITIES } from "@/constants/site";
 import BrandMark from "@/components/BrandMark";
 import { useSceneOptional } from "@/components/scene/SceneProvider";
 
@@ -95,11 +95,17 @@ export default function Footer() {
               </Link>
             </div>
             <div className="flex flex-col gap-1 md:gap-3">
-              <p className="mb-1 font-mono text-[10px] uppercase tracking-[0.18em] text-faint">Markets</p>
-              {SITE.markets.map((m) => (
-                <span key={m} className="text-sm text-mute">
-                  {m}
-                </span>
+              <p className="mb-1 font-mono text-[10px] uppercase tracking-[0.18em] text-faint">Locations</p>
+              {CITIES.map((c) => (
+                <Link
+                  key={c.slug}
+                  href={`/locations/${c.slug}`}
+                  onMouseEnter={() => scene?.setCursorBig(true)}
+                  onMouseLeave={() => scene?.setCursorBig(false)}
+                  className={LINK}
+                >
+                  {c.name}
+                </Link>
               ))}
             </div>
           </div>

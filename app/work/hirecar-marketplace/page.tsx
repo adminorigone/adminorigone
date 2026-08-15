@@ -4,11 +4,23 @@ import BrowserFrame from "@/components/BrowserFrame";
 import Image from "next/image";
 import MagneticButton from "@/components/MagneticButton";
 import TextLink from "@/components/TextLink";
-import { HIRECAR_CASE, FINAL_CTA } from "@/constants/site";
+import { HIRECAR_CASE, FINAL_CTA, SITE } from "@/constants/site";
 
 export const metadata: Metadata = {
   title: "HireCarMarketplace — case study",
   description: HIRECAR_CASE.intro,
+  openGraph: {
+    title: "HireCarMarketplace — Origo One Case Study",
+    description: HIRECAR_CASE.intro,
+    images: [
+      {
+        url: `/api/og?title=${encodeURIComponent("HireCarMarketplace")}&subline=${encodeURIComponent("Origo One Case Study")}`,
+        width: 1200,
+        height: 630,
+        alt: "HireCarMarketplace Case Study",
+      },
+    ],
+  },
 };
 
 /**
@@ -28,12 +40,35 @@ function Row({ label, children }: { label: string; children: React.ReactNode }) 
 
 export default function HireCarCaseStudy() {
   const c = HIRECAR_CASE;
-  // Dim only the domain tail, derived from the URL instead of a hard-coded TLD.
   const tld = c.url.toLowerCase().startsWith(c.title.toLowerCase())
     ? c.url.slice(c.title.length)
     : null;
+
+  const articleJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: c.title,
+    description: c.intro,
+    author: {
+      "@type": "Organization",
+      name: SITE.name,
+    },
+    publisher: {
+      "@type": "Organization",
+      name: SITE.name,
+      logo: {
+        "@type": "ImageObject",
+        url: `https://${SITE.domain}/icon.svg`,
+      },
+    },
+  };
+
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }}
+      />
       <section className="mx-auto max-w-narrative px-5 pt-[140px] md:px-8">
         <Reveal as="span" className="block font-mono text-[11px] uppercase tracking-[0.18em] text-faint">
           ( Case study ) — Documentary
