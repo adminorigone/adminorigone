@@ -40,6 +40,9 @@ export const metadata: Metadata = {
     "Sydney AI Agency",
   ],
   metadataBase: new URL(`https://${SITE.domain}`),
+  alternates: {
+    canonical: "/",
+  },
   openGraph: {
     title: `${SITE.name} — Redesign operations with AI in Australia and UAE`,
     description: SITE.tagline,
