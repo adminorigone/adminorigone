@@ -34,11 +34,11 @@ export const NAV = [
 
 export const HERO = {
   brand: "Origo One",
-  headline: "Build the AI product. Ship it. Own it.",
+  headline: "Stop building prototypes. Ship production systems.",
   subline:
-    "Most AI projects die in a slide deck. We take the idea from whiteboard to production — automation, architecture, and full-stack AI engineering. No fluff, no retainers, no middlemen.",
-  primaryCta: { label: "Start a project", href: "/discovery" },
-  secondaryCta: { label: "See how it works", scene: "poss" },
+    "Most agencies sell 'digital transformation' and deliver slide decks. We engineer high-velocity software and AI systems for founders who are ready to move. Fixed scope. Total IP handover. No retainers.",
+  primaryCta: { label: "Book a strategy session", href: "https://cal.com/origo-one/strategy" },
+  secondaryCta: { label: "See what we build", scene: "poss" },
 };
 
 export const HOME_SECTIONS = [
@@ -439,7 +439,7 @@ export const TEAM = [
 export const FINAL_CTA = {
   heading: "Have a problem worth solving?",
   body: "We take on a small number of projects at a time. If you have a workflow that's costing you, a product that needs to ship, or a codebase that needs fixing — let's talk.",
-  cta: { label: "Start the conversation", href: "/discovery" },
+  cta: { label: "Start the conversation", href: "https://cal.com/origo-one/strategy" },
 };
 
 export const DISCOVERY = {
