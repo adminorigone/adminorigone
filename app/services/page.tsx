@@ -11,8 +11,31 @@ export const metadata: Metadata = {
 };
 
 export default function ServicesPage() {
+  const offerCatalogJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "OfferCatalog",
+    name: "Enterprise AI Transformations",
+    description: "Outcome-based packages for AI product engineering and automation.",
+    itemListElement: PACKAGES.map((p, index) => ({
+      "@type": "Offer",
+      itemOffered: {
+        "@type": "Service",
+        name: p.name,
+        description: p.detail,
+      },
+      priceSpecification: {
+        "@type": "PriceSpecification",
+        priceType: p.price,
+      },
+    })),
+  };
+
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(offerCatalogJsonLd) }}
+      />
       <section className="mx-auto max-w-page px-5 pt-[140px] md:px-8">
         <Reveal as="span" className="block font-mono text-[11px] uppercase tracking-[0.18em] text-faint">
           ( Transformations )

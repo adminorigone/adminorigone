@@ -21,6 +21,13 @@ export const SITE = {
   markets: ["United States", "Europe", "Australia", "UAE (Dubai)"],
 };
 
+export const CITIES = [
+  { slug: "dubai", name: "Dubai", region: "Middle East" },
+  { slug: "sydney", name: "Sydney", region: "Australia" },
+  { slug: "new-york", name: "New York", region: "USA" },
+  { slug: "london", name: "London", region: "Europe" },
+];
+
 export const NAV = [
   { label: "Approach", href: "/process" },
   { label: "Capabilities", href: "/services" },

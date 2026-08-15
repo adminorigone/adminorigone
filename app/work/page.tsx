@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Reveal from "@/components/Reveal";
 import MagneticButton from "@/components/MagneticButton";
-import { CASE_STUDIES, FINAL_CTA } from "@/constants/site";
+import { CASE_STUDIES, FINAL_CTA, SITE } from "@/constants/site";
 
 export const metadata: Metadata = {
   title: "Work",
@@ -10,8 +10,32 @@ export const metadata: Metadata = {
 };
 
 export default function WorkPage() {
+  const collectionJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    name: "Enterprise AI Work & Case Studies",
+    description: "Proof that operations can be redesigned. Context, constraints, thinking, architecture, and results for our AI projects.",
+    mainEntity: {
+      "@type": "ItemList",
+      itemListElement: CASE_STUDIES.map((study, index) => ({
+        "@type": "ListItem",
+        position: index + 1,
+        item: {
+          "@type": "Article",
+          name: study.name,
+          description: study.summary,
+          url: `https://${SITE.domain}/work/${study.slug}`,
+        },
+      })),
+    },
+  };
+
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(collectionJsonLd) }}
+      />
       <section className="mx-auto max-w-page px-5 pt-[140px] md:px-8">
         <Reveal as="span" className="block font-mono text-[11px] uppercase tracking-[0.18em] text-faint">
           ( Work ) — Documentary, not a gallery

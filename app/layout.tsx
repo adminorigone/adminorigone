@@ -44,17 +44,26 @@ export const metadata: Metadata = {
   metadataBase: new URL(`https://${SITE.domain}`),
   alternates: { canonical: "/" },
   openGraph: {
-    title: `${SITE.name} — Redesign operations with AI in US, Europe, and Australia`,
+    title: `${SITE.name} — Redesign operations with AI in US, Europe, Australia, and UAE`,
     description: SITE.tagline,
     type: "website",
     siteName: SITE.name,
     url: "/",
     locale: "en_US",
+    images: [
+      {
+        url: `/api/og?title=${encodeURIComponent("Enterprise AI Product Agency")}&subline=${encodeURIComponent("Workflow Automation · Tech Audits · AI Engineering")}`,
+        width: 1200,
+        height: 630,
+        alt: `${SITE.name} — Enterprise AI Product Agency`,
+      },
+    ],
   },
   twitter: {
-    card: "summary",
+    card: "summary_large_image",
     title: `${SITE.name} — AI Product Engineering for Tier 1 Enterprises`,
     description: SITE.tagline,
+    images: [`/api/og?title=${encodeURIComponent("Enterprise AI Product Agency")}&subline=${encodeURIComponent("Workflow Automation · Tech Audits · AI Engineering")}`],
   },
   robots: {
     index: true,
