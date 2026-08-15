@@ -4,12 +4,18 @@
 
 :root {
   color-scheme: dark;
-  --accent: #e8e2d6;
-  --signal: #c2a878;
-  --line: rgba(243, 241, 236, 0.1);
-  --line2: rgba(243, 241, 236, 0.05);
-  --bg: #080808;
-  --ink: #f3f1ec;
+  --accent: #FDFBF7;
+  --signal: #FFB000;
+  --signal-glow: #FF5E00;
+  --line: rgba(255, 255, 255, 0.12);
+  --line2: rgba(255, 255, 255, 0.06);
+  --bg: #050505;
+  --ink: #FFFFFF;
+}
+
+.glass-card {
+  @apply backdrop-blur-2xl border border-white/10 shadow-[0_8px_32px_0_rgba(0,0,0,0.4)];
+  background-image: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.01) 100%);
 }
 
 /* No `scroll-behavior: smooth` here — Lenis drives scrolling itself and the two
@@ -39,6 +45,48 @@ a {
   color: inherit;
 }
 
+/* Keyboard focus. Preflight leaves no visible ring, and `cursor: none` removes
+   the only other positional cue — so without this, keyboard users navigate
+   blind. Pointer clicks don't trigger :focus-visible, so the ring stays out of
+   the way of mouse users. */
+:focus-visible {
+  outline: 2px solid var(--signal);
+  outline-offset: 3px;
+  border-radius: 1px;
+}
+
+/* Overflow-hidden ancestors clip an outline, so those get a ring instead. */
+.overflow-hidden :focus-visible,
+button.overflow-hidden:focus-visible,
+a.overflow-hidden:focus-visible {
+  outline-offset: -2px;
+}
+
+.skip-link {
+  position: fixed;
+  top: 0;
+  left: 50%;
+  z-index: 100;
+  transform: translate(-50%, -140%);
+  background: var(--accent);
+  color: var(--bg);
+  padding: 12px 20px;
+  font-size: 14px;
+  font-weight: 600;
+  transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.skip-link:focus-visible {
+  transform: translate(-50%, 12px);
+  outline-offset: 3px;
+}
+
+/* <main> is focusable only as a skip-link target — it should never draw a ring. */
+main:focus,
+main:focus-visible {
+  outline: none;
+}
+
 .tracking-display {
   letter-spacing: -0.045em;
 }
@@ -51,13 +99,13 @@ a {
 
 @keyframes pulse-soft {
   0% {
-    box-shadow: 0 0 0 0 rgba(194, 168, 120, 0.45);
+    box-shadow: 0 0 0 0 rgba(255, 94, 0, 0.6);
   }
   70% {
-    box-shadow: 0 0 0 7px rgba(194, 168, 120, 0);
+    box-shadow: 0 0 20px 10px rgba(255, 176, 0, 0);
   }
   100% {
-    box-shadow: 0 0 0 0 rgba(194, 168, 120, 0);
+    box-shadow: 0 0 0 0 rgba(255, 176, 0, 0);
   }
 }
 
@@ -66,8 +114,9 @@ a {
   height: 6px;
   border-radius: 50%;
   background: var(--signal);
-  animation: pulse-soft 2.8s infinite;
+  animation: pulse-soft 2.8s cubic-bezier(0.4, 0, 0.2, 1) infinite;
   flex-shrink: 0;
+  box-shadow: 0 0 8px var(--signal-glow);
 }
 
 /* Atmospheric grain — subtle, premium */

@@ -59,7 +59,13 @@ export default function ServicesPage() {
                   <p className="font-mono text-[10px] uppercase tracking-[0.16em] text-faint">Ideal customer</p>
                   <p className="mt-3 text-[16px] leading-relaxed text-mute">{t.ideal}</p>
                 </div>
-                <MagneticButton href={FINAL_CTA.cta.href}>Explore your AI roadmap</MagneticButton>
+                {/* Outline, and using the site-wide label for this destination.
+                    Six solid buttons down the page competed with the page's own
+                    primary CTA, and "Explore your AI roadmap" was a third name
+                    for the route the navbar calls "Strategy session". */}
+                <MagneticButton href={FINAL_CTA.cta.href} variant="outline">
+                  {FINAL_CTA.cta.label}
+                </MagneticButton>
               </div>
               <div>
                 <p className="mb-2 font-mono text-[10px] uppercase tracking-[0.16em] text-faint">
@@ -84,7 +90,8 @@ export default function ServicesPage() {
       </section>
 
       <section className="mx-auto max-w-page px-5 py-24 md:px-8">
-        <SectionHead no="P" label="Engagement models" aside="Value · Not hours" />
+        {/* Was "( P )" — every other SectionHead on the site is numbered. */}
+        <SectionHead no="01" label="Engagement models" aside="Value · Not hours" />
         <Reveal>
           <h2 className="mb-12 max-w-[14ch] font-display text-[clamp(28px,3.8vw,44px)] font-semibold tracking-display text-ink">
             Packages around outcomes.

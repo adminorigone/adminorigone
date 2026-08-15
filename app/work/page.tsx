@@ -32,13 +32,27 @@ export default function WorkPage() {
       <section className="mx-auto max-w-page px-5 py-20 md:px-8 md:py-24">
         <div className="rule" />
         {CASE_STUDIES.map((w, i) => {
+          // A row is only styled as interactive when it actually goes somewhere.
+          // Previously every row carried hover-lift + accent affordances, so the
+          // two rows with no destination read as broken links.
+          const destination = w.hasStory ? `/work/${w.slug}` : w.url ?? null;
           const inner = (
-            <div className="group grid grid-cols-[40px_1fr] items-center gap-x-4 gap-y-2 border-t border-line py-9 transition-[padding] duration-300 hover:pl-3 md:grid-cols-[56px_1.15fr_1.5fr_160px_40px] md:gap-6">
+            <div
+              className={`grid grid-cols-[40px_1fr] items-center gap-x-4 gap-y-2 border-t border-line py-9 md:grid-cols-[56px_1.15fr_1.5fr_160px_40px] md:gap-6 ${
+                destination ? "group transition-[padding] duration-300 hover:pl-3" : ""
+              }`}
+            >
               <span className="font-mono text-[13px] text-faint">{String(i + 1).padStart(2, "0")}</span>
               <div>
-                <h3 className="font-display text-[22px] font-semibold tracking-tight text-ink transition-colors group-hover:text-accent">
+                {/* h2, not h3 — these are the page's top-level items and sat
+                    directly under the h1 with nothing in between. */}
+                <h2
+                  className={`font-display text-[22px] font-semibold tracking-tight text-ink ${
+                    destination ? "transition-colors group-hover:text-accent" : ""
+                  }`}
+                >
                   {w.name}
-                </h3>
+                </h2>
                 <p className="mt-1 font-mono text-[11px] uppercase tracking-[0.12em] text-faint">
                   {w.tag}
                 </p>
@@ -46,15 +60,39 @@ export default function WorkPage() {
               <p className="col-start-2 text-[15px] leading-relaxed text-mute md:col-start-auto">
                 {w.summary}
               </p>
-              <span className="hidden font-mono text-xs text-signal md:block">{w.result}</span>
-              <span className="hidden text-right font-mono text-faint transition-transform duration-300 group-hover:translate-x-1 md:block">
-                {w.external ? "" : "→"}
+              {/* `result` was desktop-only, so mobile lost the proof point entirely. */}
+              <span className="col-start-2 font-mono text-xs text-signal md:col-start-auto">
+                {w.result}
+              </span>
+              <span
+                className="hidden text-right font-mono text-faint transition-transform duration-300 group-hover:translate-x-1 md:block"
+                aria-hidden
+              >
+                {destination ? "→" : ""}
               </span>
             </div>
           );
+
+          if (!destination) {
+            return (
+              <Reveal key={w.slug} delay={i * 0.05}>
+                {inner}
+              </Reveal>
+            );
+          }
+
+          const isExternal = destination.startsWith("http");
           return (
             <Reveal key={w.slug} delay={i * 0.05}>
-              {w.external ? inner : <Link href={`/work/${w.slug}`}>{inner}</Link>}
+              {isExternal ? (
+                <a href={destination} target="_blank" rel="noopener noreferrer" className="block">
+                  {inner}
+                </a>
+              ) : (
+                <Link href={destination} className="block">
+                  {inner}
+                </Link>
+              )}
             </Reveal>
           );
         })}

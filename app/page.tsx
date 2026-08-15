@@ -1,16 +1,19 @@
 "use client";
 
+import dynamic from "next/dynamic";
+import Image from "next/image";
 import Hero from "@/components/Hero";
 import Reveal from "@/components/Reveal";
 import SectionHead from "@/components/SectionHead";
 import Counter from "@/components/Counter";
 import TransformationLedger from "@/components/TransformationLedger";
-import PossibilityExplorer from "@/components/PossibilityExplorer";
-import MachineStages from "@/components/MachineStages";
+
+const PossibilityExplorer = dynamic(() => import("@/components/PossibilityExplorer"), { ssr: false });
+const MachineStages = dynamic(() => import("@/components/MachineStages"), { ssr: false });
+
 import RegionsClock from "@/components/RegionsClock";
 import FAQ from "@/components/FAQ";
 import BrowserFrame from "@/components/BrowserFrame";
-import ImagePlaceholder from "@/components/ImagePlaceholder";
 import MagneticButton from "@/components/MagneticButton";
 import EchoLine from "@/components/EchoLine";
 import EmailArchitectButton from "@/components/EmailArchitectButton";
@@ -20,11 +23,29 @@ import TextLink from "@/components/TextLink";
 import TextReveal, { WordReveal } from "@/components/TextReveal";
 import TiltCard from "@/components/TiltCard";
 import ProcessSteps from "@/components/ProcessSteps";
-import { CHAPTERS, METRICS, TRANSFORMATIONS, FINAL_CTA, CASE_STUDIES } from "@/constants/site";
+import {
+  CHAPTERS,
+  METRICS,
+  TRANSFORMATIONS,
+  FINAL_CTA,
+  CASE_STUDIES,
+  homeSection,
+  type HomeSectionId,
+} from "@/constants/site";
 
 export default function HomePage() {
   const featured = CASE_STUDIES.find((c) => c.featured)!;
+  // Derived from the data rather than hard-coding ".com.au" next to the name.
+  const featuredHost = featured.url?.replace(/^https?:\/\//, "").replace(/\/$/, "") ?? null;
+  // Only the TLD tail is dimmed, and only when the host really starts with the name.
+  const featuredTail =
+    featuredHost && featuredHost.toLowerCase().startsWith(featured.name.toLowerCase())
+      ? featuredHost.slice(featured.name.length)
+      : null;
   const chapter = (id: string) => CHAPTERS.find((c) => c.id === id)!;
+  // Numbering comes from HOME_SECTIONS so the on-page labels, the chapter rail
+  // and the mobile dock can't drift out of sync.
+  const sec = (id: HomeSectionId) => homeSection(id);
 
   return (
     <>
@@ -32,7 +53,7 @@ export default function HomePage() {
       <Hero />
 
       <ActSection scene="proof">
-        <SectionHead no="01" label="Signal" />
+        <SectionHead no={sec("proof").no} label={sec("proof").label} />
         <TextReveal as="h2" className="max-w-[16ch] font-display text-[clamp(32px,5vw,64px)] font-semibold leading-[1.05] tracking-display text-ink">
           <WordReveal text="Every claim on this page is tied to a number." />
         </TextReveal>
@@ -44,7 +65,7 @@ export default function HomePage() {
             >
               <Reveal delay={i * 0.08}>
                 <p className="font-display text-[clamp(40px,5.4vw,68px)] font-semibold leading-none tracking-tight text-ink tabular-nums">
-                  <Counter value={m.value} prefix={m.prefix} suffix={m.suffix} />
+                  <Counter value={m.value} from={m.from} prefix={m.prefix} suffix={m.suffix} />
                 </p>
                 <p className="mt-4 max-w-[230px] text-sm leading-relaxed text-mute">{m.label}</p>
               </Reveal>
@@ -54,12 +75,7 @@ export default function HomePage() {
       </ActSection>
 
       <ActSection scene="shift">
-        <div className="mb-10 flex items-center gap-4">
-          <span className="h-px w-12 bg-accent/70" aria-hidden />
-          <p className="font-mono text-[11px] uppercase tracking-[0.18em] text-faint">
-            ( {chapter("shift").no} ) — {chapter("shift").label}
-          </p>
-        </div>
+        <SectionHead no={sec("shift").no} label={sec("shift").label} />
         <TextReveal as="h2" className="max-w-[16ch] font-display text-[clamp(32px,5.2vw,64px)] font-semibold leading-[1.05] tracking-display text-ink">
           <WordReveal text={chapter("shift").headline.replace("\n", " ")} />
         </TextReveal>
@@ -71,7 +87,7 @@ export default function HomePage() {
       </ActSection>
 
       <ActSection scene="poss">
-        <SectionHead no="02" label="Possibility" />
+        <SectionHead no={sec("poss").no} label={sec("poss").label} />
         <TextReveal as="h2" className="mb-2 max-w-[15ch] font-display text-[clamp(32px,5vw,64px)] font-semibold leading-[1.05] tracking-display text-ink">
           <WordReveal text="What could the signal become?" />
         </TextReveal>
@@ -79,12 +95,7 @@ export default function HomePage() {
       </ActSection>
 
       <ActSection scene="infrastructure">
-        <div className="mb-10 flex items-center gap-4">
-          <span className="h-px w-12 bg-accent/70" aria-hidden />
-          <p className="font-mono text-[11px] uppercase tracking-[0.18em] text-faint">
-            ( {chapter("infrastructure").no} ) — {chapter("infrastructure").label}
-          </p>
-        </div>
+        <SectionHead no={sec("infrastructure").no} label={sec("infrastructure").label} />
         <TextReveal as="h2" className="max-w-[16ch] font-display text-[clamp(32px,5.2vw,64px)] font-semibold leading-[1.05] tracking-display text-ink">
           <WordReveal text={chapter("infrastructure").headline} />
         </TextReveal>
@@ -96,12 +107,7 @@ export default function HomePage() {
       </ActSection>
 
       <ActSection scene="entrance">
-        <div className="mb-10 flex items-center gap-4">
-          <span className="h-px w-12 bg-accent/70" aria-hidden />
-          <p className="font-mono text-[11px] uppercase tracking-[0.18em] text-faint">
-            ( {chapter("entrance").no} ) — {chapter("entrance").label}
-          </p>
-        </div>
+        <SectionHead no={sec("entrance").no} label={sec("entrance").label} />
         <TextReveal as="h2" className="max-w-[16ch] font-display text-[clamp(32px,5.2vw,64px)] font-semibold leading-[1.05] tracking-display text-ink">
           <WordReveal text={chapter("entrance").headline} />
         </TextReveal>
@@ -113,7 +119,7 @@ export default function HomePage() {
       </ActSection>
 
       <ActSection scene="cap">
-        <SectionHead no="04" label="Transformations" aside="Outcomes · Not seats" />
+        <SectionHead no={sec("cap").no} label={sec("cap").label} aside="Outcomes · Not seats" />
         <TextReveal as="h2" className="mb-10 max-w-[14ch] font-display text-[clamp(28px,3.8vw,48px)] font-semibold leading-[1.08] tracking-display text-ink">
           <WordReveal text="We don't sell software. We redesign how work moves." />
         </TextReveal>
@@ -124,7 +130,7 @@ export default function HomePage() {
       </ActSection>
 
       <ActSection scene="machine">
-        <SectionHead no="05" label="How we build" />
+        <SectionHead no={sec("machine").no} label={sec("machine").label} />
         <TextReveal as="h2" className="mb-2 max-w-[15ch] font-display text-[clamp(28px,3.8vw,48px)] font-semibold leading-[1.08] tracking-display text-ink">
           <WordReveal text="A product machine, not a proposal." />
         </TextReveal>
@@ -132,12 +138,12 @@ export default function HomePage() {
       </ActSection>
 
       <ActSection scene="work">
-        <SectionHead no="06" label="Shipped" />
+        <SectionHead no={sec("work").no} label={sec("work").label} />
         <div className="grid items-center gap-10 md:grid-cols-[1.1fr_0.9fr] md:gap-14">
           <div>
             <TextReveal as="h2" className="font-display text-[clamp(26px,3.4vw,44px)] font-semibold tracking-tight text-ink">
               {featured.name}
-              <span className="text-mute">.com.au</span>
+              {featuredTail && <span className="text-mute">{featuredTail}</span>}
             </TextReveal>
             <TextReveal>
               <p className="mt-5 max-w-[400px] text-[17px] leading-relaxed text-mute">{featured.summary}</p>
@@ -147,14 +153,22 @@ export default function HomePage() {
                 <span className="status-dot" />
                 <span className="font-mono text-[13px] text-mute">{featured.result}</span>
               </div>
-              <div className="mt-8">
+              <div className="mt-8 flex flex-wrap items-center gap-x-8 gap-y-4">
                 <TextLink href={`/work/${featured.slug}`}>Read the full story</TextLink>
+                {featured.url && <TextLink href={featured.url}>Visit the live site</TextLink>}
               </div>
             </Reveal>
           </div>
           <Reveal delay={0.12}>
-            <BrowserFrame url="hirecarmarketplace.com.au" tilt>
-              <ImagePlaceholder label="marketplace — production" className="aspect-[16/10] border-b-0" />
+            <BrowserFrame url={featuredHost ?? featured.name} tilt>
+              <Image 
+                src="/hirecar_mockup.jpg" 
+                alt="HireCarMarketplace Production Dashboard" 
+                width={1600} 
+                height={900} 
+                className="w-full h-auto object-cover border-b-0 aspect-[16/10]" 
+                priority 
+              />
             </BrowserFrame>
           </Reveal>
         </div>
@@ -162,7 +176,7 @@ export default function HomePage() {
       </ActSection>
 
       <ActSection scene="ship" className="items-center text-center md:items-start md:text-left">
-        <SectionHead no="07" label="How we work with you" />
+        <SectionHead no={sec("ship").no} label={sec("ship").label} />
         <TextReveal as="h2" className="font-display text-[clamp(36px,6vw,88px)] font-semibold leading-[0.98] tracking-display text-ink">
           <WordReveal text="Distributed studio." />
           <br />
@@ -179,10 +193,10 @@ export default function HomePage() {
         </div>
       </ActSection>
 
-      <ActSection>
+      <ActSection scene="clarity">
         <div className="grid w-full items-start gap-10 md:grid-cols-[1fr_1.1fr] md:gap-16">
           <div>
-            <SectionHead no="08" label="Clarity" />
+            <SectionHead no={sec("clarity").no} label={sec("clarity").label} />
             <TextReveal as="h2" className="font-display text-[clamp(28px,3.5vw,44px)] font-semibold leading-[1.08] tracking-display text-ink">
               <WordReveal text="Questions executives actually ask." />
             </TextReveal>
@@ -195,7 +209,7 @@ export default function HomePage() {
         <div className="rule" />
         <div className="pt-16 text-center md:pt-20 md:text-left">
           <Reveal as="span" className="block font-mono text-[11px] uppercase tracking-[0.18em] text-faint">
-            ( Next )
+            ( {sec("cta").no} ) — {sec("cta").label}
           </Reveal>
           <TextReveal as="h2" className="mt-6 font-display text-[clamp(44px,7vw,100px)] font-semibold leading-[0.94] tracking-display text-ink">
             <WordReveal text={FINAL_CTA.heading} />

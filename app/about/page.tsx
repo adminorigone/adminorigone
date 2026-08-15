@@ -2,8 +2,7 @@ import type { Metadata } from "next";
 import Reveal from "@/components/Reveal";
 import SectionHead from "@/components/SectionHead";
 import MagneticButton from "@/components/MagneticButton";
-import ImagePlaceholder from "@/components/ImagePlaceholder";
-import { ABOUT, TEAM, FINAL_CTA, SITE } from "@/constants/site";
+import { ABOUT, FINAL_CTA, SITE } from "@/constants/site";
 
 export const metadata: Metadata = {
   title: "About",
@@ -35,7 +34,8 @@ export default function AboutPage() {
       </section>
 
       <section className="mx-auto max-w-page px-5 py-24 md:px-8">
-        <SectionHead no="01" label="Philosophy" />
+        {/* This eyebrow is the section's only heading — h1 → h3 otherwise. */}
+        <SectionHead no="01" label="Philosophy" as="h2" />
         <div className="grid gap-px border border-line bg-line md:grid-cols-2">
           {ABOUT.philosophy.map((item, i) => (
             <Reveal
@@ -52,18 +52,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-page px-5 pb-24 md:px-8">
-        <SectionHead no="02" label="Team" />
-        <div className="grid grid-cols-2 gap-5 md:grid-cols-4">
-          {TEAM.map((member, i) => (
-            <Reveal key={i} delay={i * 0.06}>
-              <ImagePlaceholder label="portrait" className="aspect-square" />
-              <p className="mt-3.5 text-[15px] font-medium text-ink">{member.name}</p>
-              <p className="mt-0.5 font-mono text-xs text-faint">{member.role}</p>
-            </Reveal>
-          ))}
-        </div>
-      </section>
+
 
       <section className="mx-auto max-w-page px-5 pb-32 md:px-8">
         <div className="rule" />

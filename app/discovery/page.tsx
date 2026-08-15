@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Reveal from "@/components/Reveal";
 import MagneticButton from "@/components/MagneticButton";
+import ContactForm from "@/components/ContactForm";
 import { DISCOVERY, SITE } from "@/constants/site";
 
 export const metadata: Metadata = {
@@ -40,19 +41,21 @@ export default function DiscoveryPage() {
           </ul>
         </Reveal>
 
-        <Reveal delay={0.2} className="mt-12 flex flex-wrap gap-3">
-          <MagneticButton href={SITE.calLink}>Book the strategy session</MagneticButton>
-          <MagneticButton href={`mailto:${SITE.email}`} variant="outline">
-            Prefer email
-          </MagneticButton>
+        <Reveal delay={0.2} className="mt-12 flex flex-col gap-8 md:flex-row md:items-start">
+          <div className="flex flex-col gap-3">
+            <MagneticButton href={SITE.calLink}>Book the strategy session</MagneticButton>
+            <p className="mt-8 max-w-[420px] text-[14px] leading-relaxed text-faint">
+              This call filters for fit. If budget, timeline, or ambition don&apos;t align, we&apos;ll
+              say so — and point you toward a better option when we can.
+            </p>
+          </div>
+          
+          <div className="flex w-full flex-col md:ml-12 md:max-w-[400px]">
+            <span className="font-mono text-xs uppercase tracking-wider text-faint">Or reach out directly</span>
+            <ContactForm />
+          </div>
         </Reveal>
 
-        <Reveal delay={0.25}>
-          <p className="mt-10 max-w-[420px] text-[14px] leading-relaxed text-faint">
-            This call filters for fit. If budget, timeline, or ambition don&apos;t align, we&apos;ll
-            say so — and point you toward a better option when we can.
-          </p>
-        </Reveal>
       </section>
     </>
   );

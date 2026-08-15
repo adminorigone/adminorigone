@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, useReducedMotion } from "framer-motion";
-import type { ReactNode } from "react";
+import { useEffect, useState, type ReactNode } from "react";
 
 /**
  * Minimal browser chrome for screenshot mockups.
@@ -17,14 +17,27 @@ export default function BrowserFrame({
   tilt?: boolean;
 }) {
   const reduce = useReducedMotion();
+  // The rotateY pose pushes the frame past the viewport edge on narrow screens,
+  // where `overflow-x: hidden` then clips it. Only tilt from md up.
+  const [wide, setWide] = useState(false);
+  useEffect(() => {
+    const mq = window.matchMedia("(min-width: 768px)");
+    const sync = () => setWide(mq.matches);
+    sync();
+    mq.addEventListener("change", sync);
+    return () => mq.removeEventListener("change", sync);
+  }, []);
+
+  const tilted = tilt && !reduce && wide;
+
   return (
-    <div className={tilt && !reduce ? "[perspective:1200px]" : undefined}>
+    <div className={tilted ? "[perspective:1200px]" : undefined}>
       <motion.div
-        initial={tilt && !reduce ? { rotateY: -9, rotateX: 4, rotateZ: 0.5 } : false}
-        whileInView={tilt && !reduce ? { rotateY: -9, rotateX: 4 } : undefined}
-        whileHover={tilt && !reduce ? { rotateY: 0, rotateX: 0, rotateZ: 0 } : undefined}
+        initial={tilted ? { rotateY: -9, rotateX: 4, rotateZ: 0.5 } : false}
+        whileInView={tilted ? { rotateY: -9, rotateX: 4 } : undefined}
+        whileHover={tilted ? { rotateY: 0, rotateX: 0, rotateZ: 0 } : undefined}
         transition={{ duration: 0.7, ease: [0.21, 0.47, 0.32, 0.98] }}
-        style={tilt && !reduce ? { transformStyle: "preserve-3d" } : undefined}
+        style={tilted ? { transformStyle: "preserve-3d" } : undefined}
         className="overflow-hidden border border-line bg-raised/80 shadow-[0_50px_90px_-30px_rgba(0,0,0,0.7)] backdrop-blur-md"
       >
         <div className="flex items-center gap-3 border-b border-line px-4 py-2.5">

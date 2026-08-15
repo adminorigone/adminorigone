@@ -31,7 +31,9 @@ export default function TextLink({
         scene?.setCursorLabel(null);
       }}
       onMouseLeave={() => scene?.setCursorBig(false)}
-      className={`group relative inline-flex items-center gap-2.5 text-[15px] text-ink ${className}`}
+      // min-h keeps the touch target at the 44px minimum — the link text alone
+      // was 23px tall.
+      className={`group relative inline-flex min-h-[44px] items-center gap-2.5 text-[15px] text-ink ${className}`}
     >
       <span className="relative">
         {children}

@@ -2,24 +2,18 @@
 
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
+import { HOME_SECTIONS } from "@/constants/site";
 
-const CHAPTERS = [
-  { id: "hero", label: "00" },
-  { id: "proof", label: "01" },
-  { id: "poss", label: "02" },
-  { id: "cap", label: "03" },
-  { id: "machine", label: "04" },
-  { id: "work", label: "05" },
-  { id: "ship", label: "06" },
-  { id: "cta", label: "07" },
-];
-
-/** Fixed chapter rail — click to jump, highlights active act. */
+/**
+ * Fixed chapter rail — click to jump, highlights active act.
+ * Reads HOME_SECTIONS so every act on the page has a dot and the dot's number
+ * matches the "( 04 ) — Transformations" label rendered inside that act.
+ */
 export default function SectionRail() {
-  const [active, setActive] = useState("hero");
+  const [active, setActive] = useState<string>(HOME_SECTIONS[0].id);
 
   useEffect(() => {
-    const nodes = CHAPTERS.map((c) =>
+    const nodes = HOME_SECTIONS.map((c) =>
       c.id === "hero" ? document.getElementById("hero") : document.querySelector(`[data-scene="${c.id}"]`)
     ).filter(Boolean) as Element[];
 
@@ -47,9 +41,9 @@ export default function SectionRail() {
   return (
     <nav
       aria-label="Page chapters"
-      className="pointer-events-none fixed right-4 top-1/2 z-[45] hidden -translate-y-1/2 flex-col gap-3.5 lg:flex"
+      className="pointer-events-none fixed right-4 top-1/2 z-[45] hidden -translate-y-1/2 flex-col gap-3 lg:flex"
     >
-      {CHAPTERS.map((c) => {
+      {HOME_SECTIONS.map((c) => {
         const on = active === c.id;
         return (
           <button
@@ -57,7 +51,7 @@ export default function SectionRail() {
             type="button"
             onClick={() => go(c.id)}
             className="pointer-events-auto group flex items-center justify-end gap-2.5"
-            aria-label={`Go to section ${c.label}`}
+            aria-label={`Go to section ${c.no} — ${c.label}`}
             aria-current={on ? "true" : undefined}
           >
             <motion.span
@@ -65,7 +59,7 @@ export default function SectionRail() {
               transition={{ duration: 0.25 }}
               className="font-mono text-[9px] tracking-[0.14em] text-signal"
             >
-              {c.label}
+              {c.no}
             </motion.span>
             <span
               className={`block rounded-full transition-all duration-400 ${

@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 import Reveal from "@/components/Reveal";
 import { useScene, type SceneMode } from "@/components/scene/SceneProvider";
 
@@ -14,6 +14,15 @@ const NODES: { id: NonNullable<SceneMode>; label: string; desc: string }[] = [
 export default function PossibilityExplorer() {
   const { mode, setMode, explored, setCursorLabel, setCursorBig, reduced } = useScene();
   const clearRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  // The pending timeout would otherwise fire setMode after unmount (navigating
+  // away mid-hover).
+  useEffect(
+    () => () => {
+      if (clearRef.current) clearTimeout(clearRef.current);
+    },
+    []
+  );
 
   const enter = (id: NonNullable<SceneMode>) => {
     if (clearRef.current) clearTimeout(clearRef.current);

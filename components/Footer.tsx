@@ -2,18 +2,26 @@
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { NAV, SITE, FINAL_CTA } from "@/constants/site";
+import { NAV, SITE } from "@/constants/site";
 import BrandMark from "@/components/BrandMark";
 import { useSceneOptional } from "@/components/scene/SceneProvider";
 
-const BUILD_YEAR = new Date().getFullYear();
+function quarterLabel(d: Date) {
+  return `Q${Math.floor(d.getMonth() / 3) + 1} ${d.getFullYear()}`;
+}
+
+const BUILD_DATE = new Date();
+
+/** Shared so every footer link has the same 44px touch target. */
+const LINK = "flex min-h-[44px] items-center text-sm text-mute transition-colors hover:text-ink md:min-h-0 md:py-1";
 
 export default function Footer() {
   const scene = useSceneOptional();
-  // The page is statically prerendered, so the build-time year would stick until
+  // The page is statically prerendered, so the build-time date would stick until
   // the next deploy. Correct it on the client once mounted.
-  const [year, setYear] = useState(BUILD_YEAR);
-  useEffect(() => setYear(new Date().getFullYear()), []);
+  const [now, setNow] = useState(BUILD_DATE);
+  useEffect(() => setNow(new Date()), []);
+  const year = now.getFullYear();
 
   return (
     <footer className="relative border-t border-line bg-base/70 backdrop-blur-md">
@@ -25,13 +33,14 @@ export default function Footer() {
             <div className="mt-5 flex items-center gap-2">
               <span className="status-dot" />
               <span className="font-mono text-[11px] uppercase tracking-[0.12em] text-faint">
-                Accepting strategy sessions · Q3 2026
+                {/* Was hard-coded "Q3 2026" — silently goes stale every quarter. */}
+                Accepting strategy sessions · {quarterLabel(now)}
               </span>
             </div>
           </div>
 
           <div className="flex flex-wrap gap-16">
-            <div className="flex flex-col gap-3">
+            <div className="flex flex-col gap-1 md:gap-3">
               <p className="mb-1 font-mono text-[10px] uppercase tracking-[0.18em] text-faint">Index</p>
               {NAV.map((item) => (
                 <Link
@@ -39,27 +48,30 @@ export default function Footer() {
                   href={item.href}
                   onMouseEnter={() => scene?.setCursorBig(true)}
                   onMouseLeave={() => scene?.setCursorBig(false)}
-                  className="text-sm text-mute transition-colors hover:text-ink"
+                  className={LINK}
                 >
                   {item.label}
                 </Link>
               ))}
+              {/* Labelled "Strategy session" everywhere else — the footer used
+                  to call the same route "Discovery" here and "Talk to an AI
+                  architect" in the next column. */}
               <Link
                 href="/discovery"
                 onMouseEnter={() => scene?.setCursorBig(true)}
                 onMouseLeave={() => scene?.setCursorBig(false)}
-                className="text-sm text-mute transition-colors hover:text-ink"
+                className={LINK}
               >
-                Discovery
+                Strategy session
               </Link>
             </div>
-            <div className="flex flex-col gap-3">
+            <div className="flex flex-col gap-1 md:gap-3">
               <p className="mb-1 font-mono text-[10px] uppercase tracking-[0.18em] text-faint">Contact</p>
               <a
                 href={`mailto:${SITE.email}`}
                 onMouseEnter={() => scene?.setCursorBig(true)}
                 onMouseLeave={() => scene?.setCursorBig(false)}
-                className="text-sm text-mute transition-colors hover:text-ink"
+                className={LINK}
               >
                 {SITE.email}
               </a>
@@ -69,7 +81,7 @@ export default function Footer() {
                 rel="noopener noreferrer"
                 onMouseEnter={() => scene?.setCursorBig(true)}
                 onMouseLeave={() => scene?.setCursorBig(false)}
-                className="text-sm text-mute transition-colors hover:text-ink"
+                className={LINK}
               >
                 LinkedIn
               </a>
@@ -77,20 +89,12 @@ export default function Footer() {
                 href="/contact"
                 onMouseEnter={() => scene?.setCursorBig(true)}
                 onMouseLeave={() => scene?.setCursorBig(false)}
-                className="text-sm text-mute transition-colors hover:text-ink"
+                className={LINK}
               >
                 Contact
               </Link>
-              <Link
-                href={FINAL_CTA.cta.href}
-                onMouseEnter={() => scene?.setCursorBig(true)}
-                onMouseLeave={() => scene?.setCursorBig(false)}
-                className="text-sm text-mute transition-colors hover:text-ink"
-              >
-                {FINAL_CTA.cta.label}
-              </Link>
             </div>
-            <div className="flex flex-col gap-3">
+            <div className="flex flex-col gap-1 md:gap-3">
               <p className="mb-1 font-mono text-[10px] uppercase tracking-[0.18em] text-faint">Markets</p>
               {SITE.markets.map((m) => (
                 <span key={m} className="text-sm text-mute">

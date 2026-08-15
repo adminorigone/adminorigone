@@ -23,9 +23,11 @@ export default function ProcessSteps() {
             transition={{ duration: 0.9, delay: 0.1 + i * 0.1, ease: [0.22, 1, 0.36, 1] }}
           />
           <span className="font-mono text-[13px] text-signal">{p.step}</span>
-          <h4 className="mt-3.5 font-display text-[17px] font-semibold tracking-tight text-ink">
+          {/* h3, not h4 — this strip sits directly under the section's h2 and
+              the jump broke the heading outline for screen readers. */}
+          <h3 className="mt-3.5 font-display text-[17px] font-semibold tracking-tight text-ink">
             {p.title}
-          </h4>
+          </h3>
           <p className="mt-2.5 text-[13px] leading-relaxed text-mute">{p.body}</p>
         </Reveal>
       ))}

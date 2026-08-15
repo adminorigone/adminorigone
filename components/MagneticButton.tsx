@@ -5,7 +5,9 @@ import Link from "next/link";
 import { useRef, type ReactNode, type MouseEvent } from "react";
 import { useSceneOptional } from "@/components/scene/SceneProvider";
 
-const MotionLink = motion(Link);
+// `motion(Component)` is deprecated in framer-motion 11 and logged a console
+// warning on every page load.
+const MotionLink = motion.create(Link);
 
 export default function MagneticButton({
   href,
@@ -46,11 +48,11 @@ export default function MagneticButton({
   };
 
   const base =
-    "group relative inline-flex min-h-[54px] items-center justify-center gap-2.5 overflow-hidden whitespace-nowrap px-8 text-[15px]";
+    "group relative inline-flex min-h-[54px] items-center justify-center gap-2.5 overflow-hidden whitespace-nowrap px-8 text-[15px] will-change-transform";
   const look =
     variant === "solid"
-      ? "bg-accent font-medium text-base-ink shadow-[0_0_0_0_transparent] transition-shadow duration-500 hover:shadow-[0_0_44px_rgba(194,168,120,0.38)]"
-      : "border border-line text-ink transition-colors hover:border-mute hover:bg-white/[0.03]";
+      ? "bg-gradient-to-r from-signal to-signal_glow font-semibold text-base-ink shadow-[0_0_0_0_transparent] transition-shadow duration-500 hover:shadow-[0_0_30px_rgba(255,176,0,0.6)]"
+      : "glass-card text-ink transition-all duration-300 hover:border-signal/50 hover:bg-white/[0.06]";
 
   const shared = {
     ref,

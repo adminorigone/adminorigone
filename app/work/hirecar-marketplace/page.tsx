@@ -3,6 +3,7 @@ import Reveal from "@/components/Reveal";
 import BrowserFrame from "@/components/BrowserFrame";
 import ImagePlaceholder from "@/components/ImagePlaceholder";
 import MagneticButton from "@/components/MagneticButton";
+import TextLink from "@/components/TextLink";
 import { HIRECAR_CASE, FINAL_CTA } from "@/constants/site";
 
 export const metadata: Metadata = {
@@ -10,10 +11,16 @@ export const metadata: Metadata = {
   description: HIRECAR_CASE.intro,
 };
 
+/**
+ * One labelled section of the case study. The label is the section's heading —
+ * as a <p> the whole document had no outline below the h1.
+ */
 function Row({ label, children }: { label: string; children: React.ReactNode }) {
   return (
     <Reveal className="grid gap-3 border-t border-line py-8 md:grid-cols-[180px_1fr] md:gap-8">
-      <p className="font-mono text-[11px] uppercase tracking-[0.16em] text-signal">{label}</p>
+      <h2 className="font-mono text-[11px] font-normal uppercase tracking-[0.16em] text-signal">
+        {label}
+      </h2>
       <div>{children}</div>
     </Reveal>
   );
@@ -21,6 +28,10 @@ function Row({ label, children }: { label: string; children: React.ReactNode }) 
 
 export default function HireCarCaseStudy() {
   const c = HIRECAR_CASE;
+  // Dim only the domain tail, derived from the URL instead of a hard-coded TLD.
+  const tld = c.url.toLowerCase().startsWith(c.title.toLowerCase())
+    ? c.url.slice(c.title.length)
+    : null;
   return (
     <>
       <section className="mx-auto max-w-narrative px-5 pt-[140px] md:px-8">
@@ -35,13 +46,17 @@ export default function HireCarCaseStudy() {
         <Reveal>
           <h1 className="mt-4 font-display text-[clamp(38px,6.5vw,76px)] font-semibold leading-[1.02] tracking-display text-ink">
             {c.title}
-            <span className="text-faint">.com.au</span>
+            {tld && <span className="text-faint">{tld}</span>}
           </h1>
         </Reveal>
         <Reveal delay={0.1}>
           <p className="mt-7 max-w-[640px] text-[18px] leading-relaxed text-mute md:text-[19px]">
             {c.intro}
           </p>
+        </Reveal>
+        {/* The live URL was in the data but never linked from anywhere. */}
+        <Reveal delay={0.15} className="mt-8">
+          <TextLink href={`https://${c.url}`}>Visit {c.url}</TextLink>
         </Reveal>
       </section>
 
@@ -111,14 +126,18 @@ export default function HireCarCaseStudy() {
         <Row label="Lessons">
           <p className="text-[17px] leading-relaxed text-ink/90">{c.lessons}</p>
         </Row>
-        <Row label="Client">
-          <p className="font-display text-[22px] leading-snug tracking-tight text-ink">
-            &ldquo;{c.testimonial.quote}&rdquo;
-          </p>
-          <p className="mt-5 font-mono text-[13px] text-faint">
-            {c.testimonial.name} — {c.testimonial.role}
-          </p>
-        </Row>
+        {/* Rendered only once a real quote is signed off — a bracketed
+            placeholder was previously shipping to production. */}
+        {!c.testimonial.pending && c.testimonial.quote && (
+          <Row label="Client">
+            <p className="font-display text-[22px] leading-snug tracking-tight text-ink">
+              &ldquo;{c.testimonial.quote}&rdquo;
+            </p>
+            <p className="mt-5 font-mono text-[13px] text-faint">
+              {c.testimonial.name} — {c.testimonial.role}
+            </p>
+          </Row>
+        )}
       </section>
 
       <section className="mx-auto max-w-narrative px-5 py-20 md:px-8">

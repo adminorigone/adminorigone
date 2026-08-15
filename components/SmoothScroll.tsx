@@ -2,6 +2,7 @@
 
 import { useEffect } from "react";
 import Lenis from "lenis";
+import { registerLenis } from "@/components/lenisControl";
 
 /** Premium smooth scrolling — disabled when user prefers reduced motion. */
 export default function SmoothScroll() {
@@ -15,6 +16,9 @@ export default function SmoothScroll() {
       smoothWheel: true,
     });
 
+    // Published so overlays (the mobile menu) can actually stop the scroller.
+    registerLenis(lenis);
+
     let frame = 0;
     const raf = (time: number) => {
       lenis.raf(time);
@@ -24,6 +28,7 @@ export default function SmoothScroll() {
 
     return () => {
       cancelAnimationFrame(frame);
+      registerLenis(null);
       lenis.destroy();
     };
   }, []);

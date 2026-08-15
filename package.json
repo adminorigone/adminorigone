@@ -9,13 +9,16 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@hookform/resolvers": "^5.8.0",
     "@types/three": "^0.185.1",
     "framer-motion": "^11.2.10",
     "lenis": "^1.1.13",
     "next": "^14.2.4",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
-    "three": "^0.185.1"
+    "react-hook-form": "^7.85.0",
+    "three": "^0.185.1",
+    "zod": "^3.25.76"
   },
   "devDependencies": {
     "@types/node": "^20.14.2",

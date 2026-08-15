@@ -4,8 +4,8 @@ import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import SmoothScroll from "@/components/SmoothScroll";
-import LiveExperience from "@/components/scene/LiveExperience";
 import { SITE } from "@/constants/site";
+import LiveExperience from "@/components/scene/LiveExperience";
 
 const display = Syne({
   subsets: ["latin"],
@@ -32,14 +32,19 @@ export const metadata: Metadata = {
   },
   description: SITE.description,
   metadataBase: new URL(`https://${SITE.domain}`),
+  alternates: { canonical: "/" },
   openGraph: {
     title: `${SITE.name} — Redesign operations with AI`,
     description: SITE.tagline,
     type: "website",
     siteName: SITE.name,
+    url: "/",
+    locale: "en_US",
   },
   twitter: {
-    card: "summary_large_image",
+    // `summary_large_image` promises a wide image; there is no OG asset yet, so
+    // the large card would render broken. Switch back once one exists.
+    card: "summary",
     title: `${SITE.name} — Redesign operations with AI`,
     description: SITE.tagline,
   },
@@ -49,10 +54,18 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" className={`${display.variable} ${sans.variable} ${mono.variable}`}>
       <body className="grain font-sans">
+        <a href="#main" className="skip-link">
+          Skip to content
+        </a>
         <SmoothScroll />
         <LiveExperience>
           <Navbar />
-          <main>{children}</main>
+          {/* tabIndex -1 so the skip link can actually move focus here. Without
+              it the browser scrolls but leaves focus on <body>, and the next Tab
+              restarts from the top of the page. */}
+          <main id="main" tabIndex={-1}>
+            {children}
+          </main>
           <Footer />
         </LiveExperience>
       </body>

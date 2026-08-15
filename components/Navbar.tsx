@@ -2,15 +2,17 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { motion, useScroll, useSpring, AnimatePresence } from "framer-motion";
-import { NAV } from "@/constants/site";
+import { NAV, SITE } from "@/constants/site";
+import { lockScroll, unlockScroll } from "@/components/lenisControl";
 import BrandMark from "@/components/BrandMark";
 import { useSceneOptional } from "@/components/scene/SceneProvider";
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
+  const toggleRef = useRef<HTMLButtonElement>(null);
   const pathname = usePathname();
   const scene = useSceneOptional();
   const { scrollYProgress } = useScroll();
@@ -30,13 +32,30 @@ export default function Navbar() {
   const closeMenu = () => setOpen(false);
 
   // Stop the page scrolling underneath the open mobile panel.
+  // The overflow lock alone only blocks *user* scrolling — Lenis moves the page
+  // with programmatic scrolls that ignore it, so it has to be stopped too.
   useEffect(() => {
     if (!open) return;
     const prev = document.body.style.overflow;
     document.body.style.overflow = "hidden";
+    lockScroll();
     return () => {
       document.body.style.overflow = prev;
+      unlockScroll();
     };
+  }, [open]);
+
+  // Escape closes the panel and returns focus to the toggle.
+  useEffect(() => {
+    if (!open) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        setOpen(false);
+        toggleRef.current?.focus();
+      }
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
   }, [open]);
 
   const isActive = (href: string) =>
@@ -57,7 +76,8 @@ export default function Navbar() {
             href="/"
             onMouseEnter={() => scene?.setCursorBig(true)}
             onMouseLeave={() => scene?.setCursorBig(false)}
-            className="transition-opacity hover:opacity-80"
+            aria-label={`${SITE.name} — home`}
+            className="flex min-h-[44px] items-center transition-opacity hover:opacity-80"
           >
             <BrandMark size="nav" />
           </Link>
@@ -94,8 +114,10 @@ export default function Navbar() {
           </div>
 
           <button
+            ref={toggleRef}
             aria-label={open ? "Close menu" : "Open menu"}
             aria-expanded={open}
+            aria-controls="mobile-menu"
             onClick={() => setOpen(!open)}
             className="relative flex h-10 w-10 flex-col items-center justify-center gap-1.5 md:hidden"
           >
@@ -114,6 +136,7 @@ export default function Navbar() {
         <AnimatePresence>
           {open && (
             <motion.div
+              id="mobile-menu"
               initial={{ height: 0, opacity: 0 }}
               animate={{ height: "auto", opacity: 1 }}
               exit={{ height: 0, opacity: 0 }}

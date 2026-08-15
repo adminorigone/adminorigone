@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Reveal from "@/components/Reveal";
+import SectionHead from "@/components/SectionHead";
 import ProcessTimeline from "@/components/ProcessTimeline";
 import MagneticButton from "@/components/MagneticButton";
 import { FINAL_CTA, PACKAGES } from "@/constants/site";
@@ -31,13 +32,17 @@ export default function ProcessPage() {
       </section>
 
       <section className="mx-auto max-w-page px-5 py-20 md:px-8 md:py-24">
+        {/* Was the only inner page with no section numbering, and its four h3
+            steps sat directly under the h1 with no h2 between them. */}
+        <SectionHead no="01" label="How an engagement runs" as="h2" />
         <ProcessTimeline />
       </section>
 
       <section className="mx-auto max-w-page px-5 pb-24 md:px-8">
+        <SectionHead no="02" label="Engagement models" />
         <Reveal>
           <h2 className="mb-10 font-display text-[clamp(26px,3.5vw,40px)] font-semibold tracking-tight text-ink">
-            Engagement models
+            Packages around outcomes.
           </h2>
         </Reveal>
         <div className="border border-line">

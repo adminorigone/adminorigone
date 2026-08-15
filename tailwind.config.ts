@@ -5,20 +5,24 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        base: "#080808",
-        // Alias for use as a *text* colour. `text-base` collides with Tailwind's
-        // built-in font-size utility of the same name, which silently overrides
-        // any font size set alongside it — use `text-base-ink` instead.
-        "base-ink": "#080808",
-        raised: "#111111",
-        surface: "#161616",
-        ink: "#F3F1EC",
-        mute: "#8C8984",
-        faint: "#5A5752",
-        accent: "#E8E2D6",
-        signal: "#C2A878",
-        line: "rgba(243,241,236,0.10)",
-        line2: "rgba(243,241,236,0.05)",
+        base: "#050505",
+        "base-ink": "#050505",
+        raised: "rgba(20, 20, 20, 0.4)",
+        surface: "rgba(30, 30, 30, 0.6)",
+        ink: "#FFFFFF",
+        mute: "#A19D94",
+        faint: "#6B6862",
+        accent: "#FDFBF7",
+        signal: "#FFB000",
+        signal_glow: "#FF5E00",
+        line: "rgba(255,255,255,0.12)",
+        line2: "rgba(255,255,255,0.06)",
+        glass: "rgba(255, 255, 255, 0.03)",
+        glass_border: "rgba(255, 255, 255, 0.08)",
+      },
+      backgroundImage: {
+        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
+        'glass-gradient': 'linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.01) 100%)',
       },
       fontFamily: {
         display: ["var(--font-display)", "system-ui", "sans-serif"],

@@ -55,16 +55,26 @@ export default function Hero() {
       data-scene="hero"
       className="relative flex min-h-[100svh] flex-col justify-start overflow-hidden pb-[7.5rem] pt-[5.75rem] sm:justify-center sm:pb-28 md:pb-24 md:pt-[7.5rem]"
     >
-      <div className="hero-mesh" aria-hidden />
-      <div className="hero-grid" aria-hidden />
-      <div className="pointer-events-none absolute inset-0 z-0 bg-gradient-to-r from-base/55 via-transparent to-transparent" />
+      <div className="hero-mesh opacity-40 mix-blend-screen" aria-hidden />
+      <div className="hero-grid opacity-30" aria-hidden />
+      
       {!reduce && (
         <motion.div
-          aria-hidden
-          className="pointer-events-none absolute inset-0 z-0"
-          style={{ background: spotlight }}
+          className="pointer-events-none absolute left-1/2 top-1/3 z-0 h-[60vw] w-[80vw] -translate-x-1/2 -translate-y-1/2 rounded-full blur-[140px] opacity-50 mix-blend-screen"
+          animate={{
+            scale: [1, 1.1, 1],
+            rotate: [0, 45, 0],
+            background: [
+              "radial-gradient(ellipse at center, rgba(255,176,0,0.4) 0%, rgba(255,94,0,0) 60%)",
+              "radial-gradient(ellipse at center, rgba(255,94,0,0.5) 0%, rgba(255,176,0,0) 70%)",
+              "radial-gradient(ellipse at center, rgba(255,176,0,0.4) 0%, rgba(255,94,0,0) 60%)"
+            ]
+          }}
+          transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
         />
       )}
+      
+      <div className="pointer-events-none absolute inset-0 z-[1] bg-gradient-to-b from-transparent via-base/60 to-base" />
 
       <div className="relative z-[2] mx-auto w-full max-w-page px-5 md:px-8">
         <motion.div
@@ -98,7 +108,7 @@ export default function Hero() {
             return (
               <span key={i} className="inline-block overflow-hidden pb-[0.06em] align-top">
                 <motion.span
-                  className={`inline-block ${accent ? "text-signal" : ""}`}
+                  className={`inline-block ${accent ? "text-transparent bg-clip-text bg-gradient-to-br from-signal via-signal to-signal-glow font-bold drop-shadow-[0_0_15px_rgba(255,176,0,0.5)]" : ""}`}
                   initial={reduce ? false : { y: "110%" }}
                   animate={{ y: 0 }}
                   transition={{ duration: 0.95, delay: 0.28 + i * 0.055, ease: [0.22, 1, 0.36, 1] }}
@@ -138,7 +148,9 @@ export default function Hero() {
           <button
             type="button"
             onClick={() =>
-              document.querySelector("[data-scene=poss]")?.scrollIntoView({ behavior: "smooth" })
+              document
+                .querySelector(`[data-scene="${HERO.secondaryCta.scene}"]`)
+                ?.scrollIntoView({ behavior: "smooth" })
             }
             onMouseEnter={() => scene?.setCursorBig(true)}
             onMouseLeave={() => scene?.setCursorBig(false)}
