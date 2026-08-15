@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import { Syne, IBM_Plex_Sans, IBM_Plex_Mono } from "next/font/google";
+import { Analytics } from "@vercel/analytics/react";
+import { GoogleAnalytics } from "@next/third-parties/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -130,6 +132,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           </main>
           <Footer />
         </LiveExperience>
+        <Analytics />
+        <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID ?? ""} />
       </body>
     </html>
   );
