@@ -185,7 +185,8 @@ export default function HomePage() {
                 alt="HireCarMarketplace Production Dashboard" 
                 width={1600} 
                 height={900} 
-                className="w-full h-auto object-cover border-b-0 aspect-[16/10]" 
+                className="w-full h-auto object-cover border-b-0 aspect-[16/10]"
+                sizes="(max-width: 768px) 100vw, 50vw" 
                 priority 
               />
             </BrowserFrame>

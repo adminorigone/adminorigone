@@ -132,7 +132,7 @@ export default function Hero() {
         <motion.p
           initial={reduce ? false : { opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.75, delay: 0.85 }}
+          transition={{ duration: 0.75, delay: 0.65 }}
           className="max-w-[460px] text-[15px] leading-relaxed text-mute md:text-[18px]"
         >
           {HERO.subline}
