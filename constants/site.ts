@@ -267,6 +267,28 @@ export const CASE_STUDIES: CaseStudy[] = [
     hasStory: true,
   },
   {
+    slug: "cars-365",
+    name: "Cars365",
+    url: "https://cars-365.com.au",
+    tag: "Marketplace · Conversion",
+    summary:
+      "A slow automotive site doesn't just frustrate users—it bleeds revenue. We engineered a sub-second marketplace for Cars365 that turns vehicle inventory into high-converting assets.",
+    result: "Live marketplace",
+    featured: true,
+    hasStory: true,
+  },
+  {
+    slug: "xpdx",
+    name: "XPDX Rentals",
+    url: "https://xpdx.com.au",
+    tag: "Operations · Automation",
+    summary:
+      "XPDX was hitting a ceiling caused by manual fleet management and spreadsheet chaos. We architected a system to automate state tracking, eliminating double-bookings and revenue leaks.",
+    result: "Production operations",
+    featured: true,
+    hasStory: true,
+  },
+  {
     slug: "medsage",
     name: "MedSage AI",
     tag: "AI Product · Education",
@@ -309,6 +331,78 @@ export const HIRECAR_CASE = {
     quote: "",
     name: "",
     role: "Founder, HireCarMarketplace",
+  },
+};
+
+export const CARS365_CASE = {
+  title: "Cars365",
+  url: "cars-365.com.au",
+  chapter: "Stop bleeding intent. Start converting.",
+  intro:
+    "In the automotive market, a slow search bar is a lost sale. Cars365 was treating inventory like static content; we rebuilt their entire digital presence into a high-velocity conversion engine.",
+  context:
+    "Car buyers are high-intent but low-patience. They open ten tabs, and the fastest, most credible site wins the booking. Every millisecond of latency in filtering or loading images was directly impacting their bottom line.",
+  constraints: [
+    "Sub-second load times required for complex, media-heavy inventory queries",
+    "Frictionless, mobile-first booking flow to capture impulsive buyers",
+    "Deep integration with backend operational workflows",
+    "Architecture built to scale traffic without performance degradation",
+  ],
+  thinking:
+    "We stopped looking at this as a 'website' and treated it as a sales funnel. We decoupled the inventory database using Edge computing. By caching dynamic vehicle data globally, the platform feels instantaneous. Fast systems don't just feel better—they convert at a fundamentally higher rate.",
+  architecture:
+    "Next.js App Router deployed to the Edge for absolute SEO dominance and instant initial loads. Supabase handles the heavy relational logic securely, while Tailwind CSS provides a sharp, premium, trust-building aesthetic.",
+  execution:
+    "We bypassed the bloated agency process. We prototyped the core booking loop in days, tested it against real latency constraints, and shipped the production build in a tight, aggressive sprint.",
+  results: [
+    { value: "Sub-1s", label: "search latency" },
+    { value: "Zero", label: "tech debt" },
+    { value: "Live", label: "in production" },
+  ],
+  stack: ["Next.js", "Supabase", "Tailwind", "Typescript", "Vercel"],
+  lessons:
+    "Performance is not an engineering metric; it is a business fundamental. If your site is slow, your competitors are closing your leads.",
+  testimonial: {
+    pending: true,
+    quote: "",
+    name: "",
+    role: "Founder, Cars365",
+  },
+};
+
+export const XPDX_CASE = {
+  title: "XPDX Rentals",
+  url: "xpdx.com.au",
+  chapter: "Killing the spreadsheet chaos",
+  intro:
+    "XPDX was hitting the operational ceiling that kills most rental businesses: manual state tracking. We engineered an automated fleet management system that removes human error and stops revenue leakage.",
+  context:
+    "When a fleet scales, spreadsheets break. Operators were manually updating availability, leading to double-bookings, missed maintenance windows, and a chaotic customer experience. Growth was constrained by the sheer administrative overhead.",
+  constraints: [
+    "Real-time, bulletproof state synchronization across the entire fleet",
+    "Frictionless customer onboarding that doesn't compromise security",
+    "An intuitive control center for operators to manage exceptions",
+    "Absolute zero tolerance for overlapping bookings",
+  ],
+  thinking:
+    "We recognized this as a state-machine problem. Human operators shouldn't be updating availability; the system should. We engineered a strictly event-driven architecture. Every booking, cancellation, or maintenance flag is an immutable event that instantly propagates across the platform.",
+  architecture:
+    "Next.js handles the client and admin interfaces, directly interfacing with a highly relational Supabase schema. We pushed the complex availability logic down into PostgreSQL functions, ensuring that the database itself prevents double-bookings—keeping the frontend fast and dumb.",
+  execution:
+    "We didn't just build a booking form; we delivered a comprehensive operational backbone. We mapped their exact operational pain points and systematically eliminated them with code.",
+  results: [
+    { value: "100%", label: "automated tracking" },
+    { value: "Zero", label: "booking collisions" },
+    { value: "Live", label: "fleet operations" },
+  ],
+  stack: ["Next.js", "Supabase", "Tailwind", "PostgreSQL", "Vercel"],
+  lessons:
+    "Complex business logic belongs in the database, not the UI. When consistency dictates revenue, you cannot rely on the frontend for the truth.",
+  testimonial: {
+    pending: true,
+    quote: "",
+    name: "",
+    role: "Founder, XPDX",
   },
 };
 
@@ -359,4 +453,24 @@ export const DISCOVERY = {
     "No pitch, no pressure",
   ],
 };
+
+export type Role = {
+  slug: string;
+  title: string;
+  location: string;
+  type: string;
+  compensation: string;
+  status: "Open" | "Closed";
+};
+
+export const OPEN_ROLES: Role[] = [
+  {
+    slug: "ai-growth-intern",
+    title: "AI Growth Intern",
+    location: "Remote / Bhubaneswar",
+    type: "3 months (extendable)",
+    compensation: "Commission-based",
+    status: "Open",
+  },
+];
 

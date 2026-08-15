@@ -107,6 +107,15 @@ export default function Footer() {
                   {c.name}
                 </Link>
               ))}
+              <p className="mb-1 mt-4 font-mono text-[10px] uppercase tracking-[0.18em] text-faint">Company</p>
+              <Link
+                href="/careers"
+                onMouseEnter={() => scene?.setCursorBig(true)}
+                onMouseLeave={() => scene?.setCursorBig(false)}
+                className={LINK}
+              >
+                Careers
+              </Link>
             </div>
           </div>
         </div>
