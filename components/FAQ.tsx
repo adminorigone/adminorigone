@@ -19,12 +19,12 @@ export default function FAQ() {
               id={buttonId}
               type="button"
               onClick={() => setOpen(isOpen ? null : i)}
-              className="flex w-full items-start justify-between gap-6 py-5 text-left"
+              className="group flex w-full items-start justify-between gap-6 rounded-md px-3 py-5 text-left transition-colors duration-300 hover:bg-white/[0.03] -mx-3"
               aria-expanded={isOpen}
               aria-controls={panelId}
             >
-              <span className="text-[16px] font-medium leading-snug text-ink">{item.q}</span>
-              <span aria-hidden className="mt-0.5 font-mono text-sm text-faint">
+              <span className="text-[16px] font-medium leading-snug text-ink transition-colors duration-300 group-hover:text-signal">{item.q}</span>
+              <span aria-hidden className="mt-0.5 font-mono text-sm text-faint transition-colors duration-300 group-hover:text-signal">
                 {isOpen ? "−" : "+"}
               </span>
             </button>

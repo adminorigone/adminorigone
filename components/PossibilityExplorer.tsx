@@ -63,7 +63,7 @@ export default function PossibilityExplorer() {
               onFocus={() => !reduced && enter(n.id)}
               onBlur={() => !reduced && leave()}
               onClick={() => click(n.id)}
-              className={`group relative flex min-h-[160px] flex-col p-6 text-left transition-colors duration-400 md:min-h-[220px] md:p-7 ${
+              className={`group relative flex min-h-[160px] flex-col p-6 text-left transition-colors duration-400 focus-visible:ring-2 focus-visible:ring-signal focus-visible:outline-none md:min-h-[220px] md:p-7 ${
                 on ? "bg-accent/[0.1]" : "bg-raised/60 backdrop-blur-sm hover:bg-accent/[0.05]"
               }`}
             >

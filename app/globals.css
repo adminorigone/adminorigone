@@ -41,6 +41,22 @@ html, body {
   color: #080808;
 }
 
+/* Custom Scrollbar for a premium feel on Windows/Linux */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--line);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
 a {
   color: inherit;
 }

@@ -102,7 +102,7 @@ export default function ContactForm() {
           {STEPS.slice(0, step).map((s) => (
             <motion.button key={s.field} type="button" onClick={() => setStep(STEPS.findIndex((x) => x.field === s.field))}
               initial={{ opacity: 0, y: -4 }} animate={{ opacity: 1, y: 0 }}
-              className="group flex items-baseline gap-4 border-b border-white/5 py-3 text-left transition-colors hover:border-white/15"
+              className="group flex items-baseline gap-4 border-b border-white/5 py-3 text-left transition-colors hover:border-white/15 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[#FFB000] rounded-sm px-1 -mx-1"
             >
               <span className="w-6 font-mono text-[10px] text-white/20 transition-colors group-hover:text-[#FFB000]/60">{s.tag}</span>
               <span className="text-[15px] text-white/40 transition-colors group-hover:text-white/70">{getValues(s.field)}</span>
