@@ -243,7 +243,7 @@ export default function HomePage() {
             No retainers. No black boxes. No surprise invoices. Fixed scope, fixed price — and everything transfers to you at launch.
           </p>
           <div className="mt-12 flex justify-center">
-            <MagneticButton href="/contact">Apply for partnership</MagneticButton>
+            <MagneticButton href="/discovery">Book a discovery call</MagneticButton>
           </div>
         </motion.div>
       </ActSection>
