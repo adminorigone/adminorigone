@@ -321,6 +321,7 @@ export default function SceneCanvas() {
       points.rotation.y = ry;
       points.rotation.x = -0.1 + p.ty * 0.42 * (1 - globeAmt * 0.55);
       points.position.x = groupX;
+      points.position.y = (1 - formed) * 2.5; // Descend from above as it forms
       const breathe = 1 + Math.sin(time * 0.85) * 0.014;
       points.scale.setScalar(breathe);
       camera.position.z = 8.4 - globeAmt * 2.5 - p.ty * 0.35;

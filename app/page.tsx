@@ -225,17 +225,23 @@ export default function HomePage() {
 
       <ActSection scene="cta" className="relative flex min-h-[100svh] flex-col items-center justify-center pb-20 pt-32">
         <div className="pointer-events-none absolute inset-0 z-0 bg-[radial-gradient(ellipse_at_center,transparent_0%,rgba(5,5,5,0.75)_100%)]" aria-hidden />
-        <div className="relative z-10 flex flex-col items-center text-center px-4">
-          <Reveal as="span" className="block font-mono text-[11px] uppercase tracking-[0.18em] text-faint mb-8">
+        <motion.div 
+          initial={{ opacity: 0, scale: 0.95 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: true, margin: "-20%" }}
+          transition={{ duration: 1.4, ease: [0.22, 1, 0.36, 1], delay: 0.3 }}
+          className="relative z-10 flex flex-col items-center text-center px-4"
+        >
+          <span className="block font-mono text-[11px] uppercase tracking-[0.18em] text-faint mb-8">
             ( {sec("cta").no} ) — {sec("cta").label}
-          </Reveal>
-          <TextReveal as="h2" className="font-display text-[clamp(44px,7vw,110px)] font-semibold leading-[0.94] tracking-display text-ink mix-blend-plus-lighter drop-shadow-[0_0_30px_rgba(255,255,255,0.15)]">
-            <WordReveal text="Build a product with us." />
-          </TextReveal>
-          <Reveal delay={0.12} className="mt-12 flex justify-center">
+          </span>
+          <h2 className="font-display text-[clamp(44px,7vw,110px)] font-semibold leading-[0.94] tracking-display text-ink mix-blend-plus-lighter drop-shadow-[0_0_30px_rgba(255,255,255,0.15)]">
+            Come build a <br className="hidden md:block" /> product with us.
+          </h2>
+          <div className="mt-12 flex justify-center">
             <MagneticButton href="/contact">Start the conversation</MagneticButton>
-          </Reveal>
-        </div>
+          </div>
+        </motion.div>
       </ActSection>
     </>
   );
