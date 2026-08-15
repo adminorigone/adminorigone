@@ -2,7 +2,7 @@
 
 import dynamic from "next/dynamic";
 import { usePathname } from "next/navigation";
-import { SceneProvider } from "@/components/scene/SceneProvider";
+import { SceneProvider, useScene, SceneMode } from "@/components/scene/SceneProvider";
 import CustomCursor from "@/components/scene/CustomCursor";
 
 import InteractionHint from "@/components/scene/InteractionHint";
@@ -14,32 +14,30 @@ const SceneCanvas = dynamic(() => import("@/components/scene/SceneCanvas"), {
   loading: () => null,
 });
 
-/** Full liveliness layer — particles, cursor, HUD, mobile dock. */
-export default function LiveExperience({ children }: { children: React.ReactNode }) {
+function RouteAnimator() {
   const pathname = usePathname();
-  const isHome = pathname === "/";
-  const [mounted, setMounted] = useState(false);
+  const { setMode } = useScene();
 
   useEffect(() => {
-    setMounted(true);
-  }, []);
+    let mode: SceneMode = null;
+    if (pathname.startsWith("/careers")) mode = "saas";
+    else if (pathname.startsWith("/about")) mode = "auto";
+    else if (pathname.startsWith("/process")) mode = "ai";
+    else if (pathname.startsWith("/services") || pathname.startsWith("/work")) mode = "market";
+    else mode = null;
+    
+    setMode(mode);
+  }, [pathname, setMode]);
 
-  const getAmbientClass = () => {
-    if (!mounted || isHome) return "";
-    if (pathname.startsWith("/careers")) return "ambient-careers";
-    if (pathname.startsWith("/about")) return "ambient-about";
-    if (pathname.startsWith("/process")) return "ambient-process";
-    if (pathname.startsWith("/services") || pathname.startsWith("/work")) return "ambient-services";
-    return "ambient-default";
-  };
+  return null;
+}
 
+/** Full liveliness layer — particles, cursor, HUD, mobile dock. */
+export default function LiveExperience({ children }: { children: React.ReactNode }) {
   return (
     <SceneProvider>
-      {isHome && <SceneCanvas />}
-      
-      {!isHome && mounted && (
-        <div className={`pointer-events-none fixed inset-0 z-0 ${getAmbientClass()}`} aria-hidden />
-      )}
+      <RouteAnimator />
+      <SceneCanvas />
 
       {/* Reading lane + vignette — keep copy legible over the particle field */}
       <div
