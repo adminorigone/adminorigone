@@ -51,8 +51,8 @@ export default function MagneticButton({
     "group relative inline-flex min-h-[54px] items-center justify-center gap-2.5 overflow-hidden whitespace-nowrap px-8 text-[15px] will-change-transform";
   const look =
     variant === "solid"
-      ? "bg-gradient-to-r from-signal to-signal_glow font-semibold text-base-ink shadow-[0_0_0_0_transparent] transition-shadow duration-500 hover:shadow-[0_0_30px_rgba(255,176,0,0.6)]"
-      : "glass-card text-ink transition-all duration-300 hover:border-signal/50 hover:bg-white/[0.06]";
+      ? "bg-gradient-to-r from-signal to-signal_glow font-semibold text-base-ink shadow-[0_0_0_0_transparent] border border-transparent transition-all duration-500 hover:shadow-[0_0_30px_rgba(255,176,0,0.6)] hover:border-white/20"
+      : "glass-card text-ink transition-all duration-300 hover:border-signal/50 hover:bg-white/[0.06] hover:shadow-[0_0_20px_rgba(255,176,0,0.2)]";
 
   const shared = {
     ref,

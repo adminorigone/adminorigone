@@ -55,8 +55,8 @@ export default function Hero() {
       data-scene="hero"
       className="relative flex min-h-[100svh] flex-col justify-start overflow-hidden pb-[7.5rem] pt-[5.75rem] sm:justify-center sm:pb-28 md:pb-24 md:pt-[7.5rem]"
     >
-      <div className="hero-mesh opacity-40 mix-blend-screen" aria-hidden />
-      <div className="hero-grid opacity-30" aria-hidden />
+      <div className="hero-mesh opacity-[0.15] mix-blend-screen" aria-hidden />
+      <div className="hero-grid opacity-[0.15]" aria-hidden />
       
       {!reduce && (
         <motion.div

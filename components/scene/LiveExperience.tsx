@@ -21,10 +21,7 @@ export default function LiveExperience({ children }: { children: React.ReactNode
       <div
         className="pointer-events-none fixed inset-0 z-[1]"
         style={{
-          background: `
-            linear-gradient(90deg, rgba(8,8,8,0.82) 0%, rgba(8,8,8,0.55) 28%, rgba(8,8,8,0.12) 52%, transparent 68%),
-            radial-gradient(120% 80% at 50% 0%, transparent 40%, rgba(5,5,6,0.55) 100%)
-          `,
+          background: `radial-gradient(ellipse at center, transparent 0%, rgba(5,5,5,0.7) 100%)`,
         }}
         aria-hidden
       />

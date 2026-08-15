@@ -25,22 +25,36 @@ export default function BrandMark({
     footer: "text-base",
   };
   const markSize = {
-    nav: "h-1.5 w-1.5",
-    hero: "h-2.5 w-2.5",
-    footer: "h-1.5 w-1.5",
+    nav: "h-[18px] w-[18px]",
+    hero: "h-[32px] w-[32px]",
+    footer: "h-[18px] w-[18px]",
   };
 
   return (
     <span
-      className={`inline-flex items-center gap-2 font-display font-semibold tracking-tight ${sizes[size]} ${className}`}
+      className={`inline-flex items-center gap-2.5 font-display font-semibold tracking-tight ${sizes[size]} ${className}`}
       aria-label={SITE.name}
     >
       {withMark && (
-        <span
+        <svg
+          viewBox="0 0 24 24"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+          className={`${markSize[size]} shrink-0 text-signal`}
+          style={{ overflow: "visible" }}
           aria-hidden
-          className={`${markSize[size]} shrink-0 rounded-full bg-signal`}
-          style={{ boxShadow: "0 0 10px rgba(194,168,120,0.55)" }}
-        />
+        >
+          {/* Inner Core */}
+          <circle cx="12" cy="12" r="2.5" fill="currentColor" style={{ filter: "drop-shadow(0 0 6px rgba(255,176,0,0.85))" }} />
+          {/* Middle Orbit */}
+          <circle cx="12" cy="12" r="6" stroke="currentColor" strokeWidth="1" strokeDasharray="1 3" strokeLinecap="round" opacity="0.6" />
+          {/* Outer Mesh */}
+          <circle cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="1" opacity="0.15" />
+          <path d="M12 2C17.5228 2 22 6.47715 22 12" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" opacity="0.9" />
+          {/* Connection Nodes */}
+          <circle cx="22" cy="12" r="1" fill="currentColor" />
+          <circle cx="12" cy="2" r="1" fill="currentColor" />
+        </svg>
       )}
       <span>
         <span className="text-ink">{SITE.shortName}</span>
