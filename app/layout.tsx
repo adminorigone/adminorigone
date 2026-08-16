@@ -12,19 +12,19 @@ import LiveExperience from "@/components/scene/LiveExperience";
 const display = Syne({
   subsets: ["latin"],
   variable: "--font-display",
-  weight: ["500", "600", "700", "800"],
+  weight: ["600", "700"],
 });
 
 const sans = IBM_Plex_Sans({
   subsets: ["latin"],
   variable: "--font-sans",
-  weight: ["400", "500", "600"],
+  weight: ["400", "500"],
 });
 
 const mono = IBM_Plex_Mono({
   subsets: ["latin"],
   variable: "--font-mono",
-  weight: ["400", "500"],
+  weight: ["400"],
 });
 
 export const metadata: Metadata = {

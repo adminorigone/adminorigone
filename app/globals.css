@@ -4,13 +4,8 @@
 
 :root {
   color-scheme: dark;
-  --accent: #FDFBF7;
-  --signal: #FFB000;
-  --signal-glow: #FF5E00;
-  --line: rgba(255, 255, 255, 0.12);
-  --line2: rgba(255, 255, 255, 0.06);
   --bg: #050505;
-  --ink: #FFFFFF;
+  --line: rgba(255, 255, 255, 0.12);
 }
 
 .glass-card {
