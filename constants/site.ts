@@ -407,6 +407,12 @@ export const XPDX_CASE = {
   },
 };
 
+export const CASE_STUDY_CONTENT: Record<string, typeof HIRECAR_CASE> = {
+  "hirecar-marketplace": HIRECAR_CASE,
+  "cars-365": CARS365_CASE,
+  "xpdx": XPDX_CASE,
+};
+
 export const ABOUT = {
   heading: "We build.\nYou own.",
   body: "Origo One is a small, focused AI product agency based in Sydney. We take on problems where automation and AI create a real, measurable outcome — and we build the system that delivers it. We don't do retainers, we don't do generic software development, and we don't hand you a slide deck. We ship production systems and transfer them to you on day one.",

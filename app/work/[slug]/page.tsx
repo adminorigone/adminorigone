@@ -1,28 +1,43 @@
 import type { Metadata } from "next";
+import { notFound } from "next/navigation";
 import Reveal from "@/components/Reveal";
 import BrowserFrame from "@/components/BrowserFrame";
 import Image from "next/image";
 import MagneticButton from "@/components/MagneticButton";
 import TextLink from "@/components/TextLink";
-import { CARS365_CASE, FINAL_CTA, SITE } from "@/constants/site";
+import { CASE_STUDY_CONTENT, CASE_STUDIES, FINAL_CTA, SITE } from "@/constants/site";
 
-export const metadata: Metadata = {
-  title: "Cars365 — case study",
-  description: CARS365_CASE.intro,
-  openGraph: {
-    title: "Cars365 — Origo One Case Study",
-    description: CARS365_CASE.intro,
-    images: [
-      {
-        url: `/api/og?title=${encodeURIComponent("Cars365")}&subline=${encodeURIComponent("Origo One Case Study")}`,
-        width: 1200,
-        height: 630,
-        alt: "Cars365 Case Study",
-      },
-    ],
-  },
-};
+export async function generateStaticParams() {
+  return CASE_STUDIES.filter(c => c.hasStory).map((study) => ({
+    slug: study.slug,
+  }));
+}
 
+export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
+  const c = CASE_STUDY_CONTENT[params.slug];
+  if (!c) return { title: "Not Found" };
+
+  return {
+    title: `${c.title} — case study`,
+    description: c.intro,
+    openGraph: {
+      title: `${c.title} — Origo One Case Study`,
+      description: c.intro,
+      images: [
+        {
+          url: `/api/og?title=${encodeURIComponent(c.title)}&subline=${encodeURIComponent("Origo One Case Study")}`,
+          width: 1200,
+          height: 630,
+          alt: `${c.title} Case Study`,
+        },
+      ],
+    },
+  };
+}
+
+/**
+ * One labelled section of the case study. The label is the section's heading.
+ */
 function Row({ label, children }: { label: string; children: React.ReactNode }) {
   return (
     <Reveal className="grid gap-3 border-t border-line py-8 md:grid-cols-[180px_1fr] md:gap-8">
@@ -34,8 +49,10 @@ function Row({ label, children }: { label: string; children: React.ReactNode }) 
   );
 }
 
-export default function Cars365CaseStudy() {
-  const c = CARS365_CASE;
+export default function CaseStudyPage({ params }: { params: { slug: string } }) {
+  const c = CASE_STUDY_CONTENT[params.slug];
+  if (!c) notFound();
+
   const tld = c.url.toLowerCase().startsWith(c.title.toLowerCase())
     ? c.url.slice(c.title.length)
     : null;
@@ -85,6 +102,7 @@ export default function Cars365CaseStudy() {
             {c.intro}
           </p>
         </Reveal>
+        {/* The live URL was in the data but never linked from anywhere. */}
         <Reveal delay={0.15} className="mt-8">
           <TextLink href={`https://${c.url}`}>Visit {c.url}</TextLink>
         </Reveal>
@@ -93,9 +111,14 @@ export default function Cars365CaseStudy() {
       <section className="mx-auto max-w-narrative px-5 pt-14 md:px-8">
         <Reveal>
           <BrowserFrame url={c.url} tilt>
-            <div className="bg-mute/10 w-full aspect-[16/10] flex items-center justify-center">
-              <span className="font-mono text-sm text-faint">Mockup goes here</span>
-            </div>
+            <Image 
+              src="/hirecar_mockup.jpg" 
+              alt="HireCarMarketplace Production Dashboard" 
+              width={1600} 
+              height={900} 
+              className="w-full h-auto object-cover border-b-0 aspect-[16/10]" 
+              priority 
+            />
           </BrowserFrame>
         </Reveal>
       </section>
@@ -149,6 +172,8 @@ export default function Cars365CaseStudy() {
         <Row label="Lessons">
           <p className="text-[17px] leading-relaxed text-ink/90">{c.lessons}</p>
         </Row>
+        {/* Rendered only once a real quote is signed off — a bracketed
+            placeholder was previously shipping to production. */}
         {!c.testimonial.pending && c.testimonial.quote && (
           <Row label="Client">
             <p className="font-display text-[22px] leading-snug tracking-tight text-ink">
