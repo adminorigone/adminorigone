@@ -8,6 +8,7 @@ import Reveal from "@/components/Reveal";
 import SectionHead from "@/components/SectionHead";
 import Counter from "@/components/Counter";
 import TransformationLedger from "@/components/TransformationLedger";
+import LogoTicker from "@/components/LogoTicker";
 
 const PossibilityExplorer = dynamic(() => import("@/components/PossibilityExplorer"), { ssr: false });
 const MachineStages = dynamic(() => import("@/components/MachineStages"), { ssr: false });
@@ -70,6 +71,7 @@ export default function HomePage() {
       />
       <SectionRail />
       <Hero />
+      <LogoTicker />
 
       <ActSection scene="proof">
         <SectionHead no={sec("proof").no} label={sec("proof").label} />
