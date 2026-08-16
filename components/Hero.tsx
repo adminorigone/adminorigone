@@ -76,7 +76,7 @@ export default function Hero() {
       
       <div className="pointer-events-none absolute inset-0 z-[1] bg-gradient-to-b from-transparent via-base/60 to-base" />
 
-      <div className="relative z-[2] mx-auto w-full max-w-page px-5 md:px-8">
+      <div className="relative z-[2] w-full px-5 md:px-12 lg:px-24">
         <motion.div
           initial={reduce ? false : { opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}

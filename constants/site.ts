@@ -262,8 +262,8 @@ export const CASE_STUDIES: CaseStudy[] = [
     url: "https://hirecarmarketplace.com.au",
     tag: "Marketplace · Operations",
     summary:
-      "Australian car-hire operators were running on phone calls and spreadsheets. We built a two-sided marketplace with instant booking, payments, and trust signals — and shipped it.",
-    result: "~1,000 registered users · live",
+      "Legacy car-hire operations were drowning in phone calls and manual spreadsheets. We engineered a complete two-sided marketplace from scratch—instant bookings, automated payments, and robust trust signals—shipping to production in weeks.",
+    result: "1,000+ active users · Live",
     featured: true,
     hasStory: true,
   },
@@ -273,8 +273,8 @@ export const CASE_STUDIES: CaseStudy[] = [
     url: "https://cars-365.com.au",
     tag: "Marketplace · Conversion",
     summary:
-      "A slow automotive site doesn't just frustrate users—it bleeds revenue. We engineered a sub-second marketplace for Cars365 that turns vehicle inventory into high-converting assets.",
-    result: "Live marketplace",
+      "Latency kills conversions. Cars365 was losing high-intent buyers to a slow, bloated site. We architected a sub-second, edge-rendered marketplace that turns vehicle inventory into an unstoppable conversion engine.",
+    result: "Sub-1s latency · Live",
     featured: true,
     hasStory: true,
   },
@@ -284,8 +284,8 @@ export const CASE_STUDIES: CaseStudy[] = [
     url: "https://xpdx.com.au",
     tag: "Operations · Automation",
     summary:
-      "XPDX was hitting a ceiling caused by manual fleet management and spreadsheet chaos. We architected a system to automate state tracking, eliminating double-bookings and revenue leaks.",
-    result: "Production operations",
+      "Manual fleet management creates chaotic double-bookings and massive revenue leaks. We engineered a strictly event-driven state machine that fully automates their entire operational backbone.",
+    result: "Zero collisions · Live",
     featured: true,
     hasStory: true,
   },

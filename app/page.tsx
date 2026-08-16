@@ -8,8 +8,8 @@ import Reveal from "@/components/Reveal";
 import SectionHead from "@/components/SectionHead";
 import Counter from "@/components/Counter";
 import TransformationLedger from "@/components/TransformationLedger";
-import LogoTicker from "@/components/LogoTicker";
 import TestimonialCarousel from "@/components/TestimonialCarousel";
+import WorkCarousel from "@/components/WorkCarousel";
 
 const PossibilityExplorer = dynamic(() => import("@/components/PossibilityExplorer"), { ssr: false });
 const MachineStages = dynamic(() => import("@/components/MachineStages"), { ssr: false });
@@ -38,14 +38,6 @@ import {
 } from "@/constants/site";
 
 export default function HomePage() {
-  const featured = CASE_STUDIES.find((c) => c.featured)!;
-  // Derived from the data rather than hard-coding ".com.au" next to the name.
-  const featuredHost = featured.url?.replace(/^https?:\/\//, "").replace(/\/$/, "") ?? null;
-  // Only the TLD tail is dimmed, and only when the host really starts with the name.
-  const featuredTail =
-    featuredHost && featuredHost.toLowerCase().startsWith(featured.name.toLowerCase())
-      ? featuredHost.slice(featured.name.length)
-      : null;
   const chapter = (id: string) => CHAPTERS.find((c) => c.id === id)!;
   // Numbering comes from HOME_SECTIONS so the on-page labels, the chapter rail
   // and the mobile dock can't drift out of sync.
@@ -72,7 +64,6 @@ export default function HomePage() {
       />
       <SectionRail />
       <Hero />
-      <LogoTicker />
 
       <ActSection scene="proof">
         <SectionHead no={sec("proof").no} label={sec("proof").label} />
@@ -164,42 +155,11 @@ export default function HomePage() {
         <MachineStages />
       </ActSection>
 
-      <ActSection scene="work">
-        <SectionHead no={sec("work").no} label={sec("work").label} />
-        <div className="grid items-center gap-10 md:grid-cols-[1.1fr_0.9fr] md:gap-14">
-          <div>
-            <TextReveal as="h2" className="font-display text-[clamp(26px,3.4vw,44px)] font-semibold tracking-tight text-ink">
-              {featured.name}
-              {featuredTail && <span className="text-mute">{featuredTail}</span>}
-            </TextReveal>
-            <TextReveal>
-              <p className="mt-5 max-w-[400px] text-[17px] leading-relaxed text-mute">{featured.summary}</p>
-            </TextReveal>
-            <Reveal delay={0.1}>
-              <div className="mt-6 flex items-center gap-2">
-                <span className="status-dot" />
-                <span className="font-mono text-[13px] text-mute">{featured.result}</span>
-              </div>
-              <div className="mt-8 flex flex-wrap items-center gap-x-8 gap-y-4">
-                <TextLink href={`/work/${featured.slug}`}>Read the full story</TextLink>
-                {featured.url && <TextLink href={featured.url}>Visit the live site</TextLink>}
-              </div>
-            </Reveal>
-          </div>
-          <Reveal delay={0.12}>
-            <BrowserFrame url={featuredHost ?? featured.name} tilt>
-              <Image 
-                src="/hirecar_mockup.jpg" 
-                alt="HireCarMarketplace Production Dashboard" 
-                width={1600} 
-                height={900} 
-                className="w-full h-auto object-cover border-b-0 aspect-[16/10]"
-                sizes="(max-width: 768px) 100vw, 50vw" 
-                priority 
-              />
-            </BrowserFrame>
-          </Reveal>
+      <ActSection scene="work" className="overflow-hidden">
+        <div className="mb-12">
+          <SectionHead no={sec("work").no} label={sec("work").label} />
         </div>
+        <WorkCarousel />
         <ProcessSteps />
       </ActSection>
 
