@@ -11,19 +11,21 @@ const MotionLink = motion.create(Link);
 
 export default function MagneticButton({
   href,
+  onClick,
   children,
   variant = "solid",
   className = "",
 }: {
-  href: string;
+  href?: string;
+  onClick?: () => void;
   children: ReactNode;
   variant?: "solid" | "outline";
   className?: string;
 }) {
-  const ref = useRef<HTMLAnchorElement>(null);
+  const ref = useRef<HTMLAnchorElement & HTMLButtonElement>(null);
   // mailto:, tel: and http(s) leave the app — everything else is an in-app route
   // and must go through next/link so we keep client-side navigation.
-  const isExternal = /^(https?:|mailto:|tel:)/i.test(href);
+  const isExternal = href ? /^(https?:|mailto:|tel:)/i.test(href) : false;
   const reduce = useReducedMotion();
   const scene = useSceneOptional();
   const x = useSpring(0, { stiffness: 220, damping: 16, mass: 0.35 });
@@ -48,7 +50,7 @@ export default function MagneticButton({
   };
 
   const base =
-    "group relative inline-flex min-h-[54px] items-center justify-center gap-2.5 overflow-hidden whitespace-nowrap px-8 text-[15px] will-change-transform";
+    "group relative inline-flex min-h-[54px] items-center justify-center gap-2.5 overflow-hidden whitespace-nowrap px-8 text-[15px] will-change-transform rounded-full";
   const look =
     variant === "solid"
       ? "bg-gradient-to-r from-signal to-signal_glow font-semibold text-base-ink shadow-[0_0_0_0_transparent] border border-transparent transition-all duration-500 hover:shadow-[0_0_30px_rgba(255,176,0,0.6)] hover:border-white/20"
@@ -59,6 +61,7 @@ export default function MagneticButton({
     onMouseMove: onMove,
     onMouseEnter: onEnter,
     onMouseLeave: onLeave,
+    onClick,
     style: { x, y, scale },
     className: `${base} ${look} ${className}`,
   };
@@ -83,6 +86,14 @@ export default function MagneticButton({
     </>
   );
 
+  if (!href) {
+    return (
+      <motion.button type="button" {...shared}>
+        {inner}
+      </motion.button>
+    );
+  }
+
   if (isExternal) {
     const newTab = /^https?:/i.test(href);
     return (
@@ -98,7 +109,7 @@ export default function MagneticButton({
   }
 
   return (
-    <MotionLink {...shared} href={href}>
+    <MotionLink href={href} {...shared}>
       {inner}
     </MotionLink>
   );

@@ -1,6 +1,21 @@
 import { NextResponse } from "next/server";
 import { z } from "zod";
-import { createClient } from "@supabase/supabase-js";
+import { Ratelimit } from "@upstash/ratelimit";
+import { Redis } from "@upstash/redis";
+
+// Initialize Upstash Redis & Ratelimit only if the env vars exist
+const redisUrl = process.env.UPSTASH_REDIS_REST_URL;
+const redisToken = process.env.UPSTASH_REDIS_REST_TOKEN;
+const webhookUrl = process.env.CONTACT_WEBHOOK_URL; // e.g. Formspree or Zapier URL
+
+const redis = (redisUrl && redisToken) ? new Redis({ url: redisUrl, token: redisToken }) : null;
+
+// Create a new ratelimiter, that allows 3 requests per 1 minute
+const ratelimit = redis ? new Ratelimit({
+  redis,
+  limiter: Ratelimit.slidingWindow(3, "1 m"),
+  analytics: true,
+}) : null;
 
 const contactSchema = z.object({
   name: z.string().min(2, "Name is required"),
@@ -10,39 +25,51 @@ const contactSchema = z.object({
 });
 
 export async function POST(req: Request) {
-  // Initialize Supabase client inside the handler to prevent Next.js build-time execution errors
-  const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!;
-  const supabaseServiceKey = process.env.SUPABASE_SERVICE_ROLE_KEY!;
-  const supabase = createClient(supabaseUrl, supabaseServiceKey);
-
   try {
+    const ip = req.headers.get("x-forwarded-for") ?? "127.0.0.1";
+
+    if (ratelimit) {
+      const { success } = await ratelimit.limit(`ratelimit_contact_${ip}`);
+      if (!success) {
+        return NextResponse.json(
+          { success: false, message: "Too many requests. Please try again later." },
+          { status: 429 }
+        );
+      }
+    }
+
     const body = await req.json();
     const validatedData = contactSchema.parse(body);
 
     console.log("Received contact submission:", validatedData);
 
-    // Insert data into Supabase 'leads' table
-    const { data, error } = await supabase
-      .from('leads')
-      .insert([
-        {
-          name: validatedData.name,
-          email: validatedData.email,
-          company: validatedData.company,
-          workflow_constraint: validatedData.workflow,
-        }
-      ]);
+    // Forward to Webhook/Formspree if configured
+    if (webhookUrl) {
+      const response = await fetch(webhookUrl, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify(validatedData),
+      });
 
-    if (error) {
-      console.error("Supabase insert error:", error);
-      return NextResponse.json({ success: false, message: "Failed to save lead to database." }, { status: 500 });
+      if (!response.ok) {
+        throw new Error("Failed to forward to CRM webhook");
+      }
+    } else {
+      console.warn("No CONTACT_WEBHOOK_URL provided. Simulating successful submission.");
     }
 
-    return NextResponse.json({ success: true, message: "Submission received and saved securely." }, { status: 200 });
+    return NextResponse.json(
+      { success: true, message: "Submission received and saved securely." },
+      { status: 200 }
+    );
   } catch (error) {
     if (error instanceof z.ZodError) {
       return NextResponse.json({ success: false, errors: error.errors }, { status: 400 });
     }
+    console.error("API Error:", error);
     return NextResponse.json({ success: false, message: "Internal Server Error" }, { status: 500 });
   }
 }

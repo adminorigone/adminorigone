@@ -10,6 +10,8 @@ import Counter from "@/components/Counter";
 import TransformationLedger from "@/components/TransformationLedger";
 import TestimonialCarousel from "@/components/TestimonialCarousel";
 import WorkCarousel from "@/components/WorkCarousel";
+import MetricsSection from "@/components/sections/MetricsSection";
+import ShowreelSection from "@/components/sections/ShowreelSection";
 
 const PossibilityExplorer = dynamic(() => import("@/components/PossibilityExplorer"), { ssr: false });
 const MachineStages = dynamic(() => import("@/components/MachineStages"), { ssr: false });
@@ -65,39 +67,8 @@ export default function HomePage() {
       <SectionRail />
       <Hero />
 
-      <ActSection scene="proof">
-        <SectionHead no={sec("proof").no} label={sec("proof").label} />
-        <TextReveal as="h2" className="max-w-[16ch] font-display text-[clamp(32px,5vw,64px)] font-semibold leading-[1.05] tracking-display text-ink">
-          <WordReveal text="Numbers first. Everything else follows." />
-        </TextReveal>
-        <div className="mt-12 grid grid-cols-1 gap-px border border-line bg-line/70 md:grid-cols-3">
-          {METRICS.map((m, i) => (
-            <TiltCard
-              key={m.label}
-              className="bg-raised/55 p-10 backdrop-blur-md hover:bg-accent/[0.06] md:p-11"
-            >
-              <Reveal delay={i * 0.08}>
-                <p className="font-display text-[clamp(40px,5.4vw,68px)] font-semibold leading-none tracking-tight text-ink tabular-nums">
-                  <Counter value={m.value} from={m.from} prefix={m.prefix} suffix={m.suffix} />
-                </p>
-                <p className="mt-4 max-w-[230px] text-sm leading-relaxed text-mute">{m.label}</p>
-              </Reveal>
-            </TiltCard>
-          ))}
-        </div>
-      </ActSection>
-
-      <ActSection scene="shift">
-        <SectionHead no={sec("shift").no} label={sec("shift").label} />
-        <TextReveal as="h2" className="max-w-[16ch] font-display text-[clamp(32px,5.2vw,64px)] font-semibold leading-[1.05] tracking-display text-ink">
-          <WordReveal text={chapter("shift").headline.replace("\n", " ")} />
-        </TextReveal>
-        <TextReveal delay={0.05}>
-          <p className="mt-7 max-w-[540px] text-[18px] leading-relaxed text-mute md:text-[19px]">
-            {chapter("shift").body}
-          </p>
-        </TextReveal>
-      </ActSection>
+      <MetricsSection />
+      <ShowreelSection />
 
       <ActSection scene="poss">
         <SectionHead no={sec("poss").no} label={sec("poss").label} />
