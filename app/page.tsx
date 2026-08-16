@@ -9,6 +9,7 @@ import SectionHead from "@/components/SectionHead";
 import Counter from "@/components/Counter";
 import TransformationLedger from "@/components/TransformationLedger";
 import LogoTicker from "@/components/LogoTicker";
+import TestimonialCarousel from "@/components/TestimonialCarousel";
 
 const PossibilityExplorer = dynamic(() => import("@/components/PossibilityExplorer"), { ssr: false });
 const MachineStages = dynamic(() => import("@/components/MachineStages"), { ssr: false });
@@ -148,6 +149,11 @@ export default function HomePage() {
         <Reveal className="mt-8">
           <TextLink href="/services">See all transformations</TextLink>
         </Reveal>
+      </ActSection>
+
+      <ActSection scene="testimonials">
+        <SectionHead no={sec("testimonials").no} label={sec("testimonials").label} />
+        <TestimonialCarousel />
       </ActSection>
 
       <ActSection scene="machine">

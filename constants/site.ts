@@ -49,11 +49,12 @@ export const HOME_SECTIONS = [
   { id: "infrastructure", no: "04", label: "The fix" },
   { id: "entrance", no: "05", label: "The build" },
   { id: "cap", no: "06", label: "Services" },
-  { id: "machine", no: "07", label: "How" },
-  { id: "work", no: "08", label: "Shipped" },
-  { id: "cta", no: "09", label: "Work with us" },
-  { id: "clarity", no: "10", label: "FAQ" },
-  { id: "ship", no: "11", label: "Close" },
+  { id: "testimonials", no: "07", label: "Social Proof" },
+  { id: "machine", no: "08", label: "How" },
+  { id: "work", no: "09", label: "Shipped" },
+  { id: "cta", no: "10", label: "Work with us" },
+  { id: "clarity", no: "11", label: "FAQ" },
+  { id: "ship", no: "12", label: "Close" },
 ] as const;
 
 export type HomeSectionId = (typeof HOME_SECTIONS)[number]["id"];
