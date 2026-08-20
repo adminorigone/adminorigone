@@ -3,9 +3,8 @@
 import dynamic from "next/dynamic";
 import { usePathname } from "next/navigation";
 import { SceneProvider, useScene, SceneMode } from "@/components/scene/SceneProvider";
-import CustomCursor from "@/components/scene/CustomCursor";
 
-import InteractionHint from "@/components/scene/InteractionHint";
+
 import MobileDock from "@/components/scene/MobileDock";
 import { useEffect, useState } from "react";
 
@@ -47,8 +46,6 @@ export default function LiveExperience({ children }: { children: React.ReactNode
         }}
         aria-hidden
       />
-      <CustomCursor />
-      <InteractionHint />
       <MobileDock />
       <div className="relative z-[2]">{children}</div>
     </SceneProvider>

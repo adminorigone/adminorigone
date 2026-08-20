@@ -11,7 +11,6 @@ import TransformationLedger from "@/components/TransformationLedger";
 import TestimonialCarousel from "@/components/TestimonialCarousel";
 import WorkCarousel from "@/components/WorkCarousel";
 import MetricsSection from "@/components/sections/MetricsSection";
-import ShowreelSection from "@/components/sections/ShowreelSection";
 
 const PossibilityExplorer = dynamic(() => import("@/components/PossibilityExplorer"), { ssr: false });
 const MachineStages = dynamic(() => import("@/components/MachineStages"), { ssr: false });
@@ -68,8 +67,6 @@ export default function HomePage() {
       <Hero />
 
       <MetricsSection />
-      <ShowreelSection />
-
       <ActSection scene="poss">
         <SectionHead no={sec("poss").no} label={sec("poss").label} />
         <TextReveal as="h2" className="mb-2 max-w-[15ch] font-display text-[clamp(32px,5vw,64px)] font-semibold leading-[1.05] tracking-display text-ink">
@@ -134,34 +131,6 @@ export default function HomePage() {
         <ProcessSteps />
       </ActSection>
 
-      <ActSection scene="cta" className="items-center text-center md:items-start md:text-left">
-        <SectionHead no={sec("cta").no} label={sec("cta").label} />
-        <TextReveal as="h2" className="mb-6 font-display text-[clamp(36px,5.5vw,72px)] font-semibold leading-[0.98] tracking-display text-ink">
-          <WordReveal text={FINAL_CTA.heading} />
-        </TextReveal>
-        <TextReveal>
-          <p className="mx-auto max-w-[540px] text-[18px] leading-relaxed text-mute md:mx-0 md:text-[19px]">
-            {FINAL_CTA.body}
-          </p>
-        </TextReveal>
-        <Reveal delay={0.12} className="mt-10 flex flex-wrap items-center justify-center gap-4 md:justify-start">
-          <MagneticButton href={FINAL_CTA.cta.href}>{FINAL_CTA.cta.label}</MagneticButton>
-          <EmailArchitectButton />
-        </Reveal>
-      </ActSection>
-
-      <ActSection scene="clarity">
-        <div className="grid w-full items-start gap-10 md:grid-cols-[1fr_1.1fr] md:gap-16">
-          <div>
-            <SectionHead no={sec("clarity").no} label={sec("clarity").label} />
-            <TextReveal as="h2" className="font-display text-[clamp(28px,3.5vw,44px)] font-semibold leading-[1.08] tracking-display text-ink">
-              <WordReveal text="Common questions." />
-            </TextReveal>
-          </div>
-          <FAQ />
-        </div>
-      </ActSection>
-
       <ActSection scene="ship" className="relative flex min-h-[100svh] flex-col items-center justify-center pb-20 pt-32">
         <div className="pointer-events-none absolute inset-0 z-0 bg-[radial-gradient(ellipse_at_center,transparent_0%,rgba(5,5,5,0.75)_100%)]" aria-hidden />
         <motion.div 
@@ -186,6 +155,34 @@ export default function HomePage() {
             <MagneticButton href="/discovery">Book a discovery call</MagneticButton>
           </div>
         </motion.div>
+      </ActSection>
+
+      <ActSection scene="clarity">
+        <div className="grid w-full items-start gap-10 md:grid-cols-[1fr_1.1fr] md:gap-16">
+          <div>
+            <SectionHead no={sec("clarity").no} label={sec("clarity").label} />
+            <TextReveal as="h2" className="font-display text-[clamp(28px,3.5vw,44px)] font-semibold leading-[1.08] tracking-display text-ink">
+              <WordReveal text="Common questions." />
+            </TextReveal>
+          </div>
+          <FAQ />
+        </div>
+      </ActSection>
+
+      <ActSection scene="cta" className="items-center text-center md:items-start md:text-left">
+        <SectionHead no={sec("cta").no} label={sec("cta").label} />
+        <TextReveal as="h2" className="mb-6 font-display text-[clamp(36px,5.5vw,72px)] font-semibold leading-[0.98] tracking-display text-ink">
+          <WordReveal text={FINAL_CTA.heading} />
+        </TextReveal>
+        <TextReveal>
+          <p className="mx-auto max-w-[540px] text-[18px] leading-relaxed text-mute md:mx-0 md:text-[19px]">
+            {FINAL_CTA.body}
+          </p>
+        </TextReveal>
+        <Reveal delay={0.12} className="mt-10 flex flex-wrap items-center justify-center gap-4 md:justify-start">
+          <MagneticButton href={FINAL_CTA.cta.href}>{FINAL_CTA.cta.label}</MagneticButton>
+          <EmailArchitectButton />
+        </Reveal>
       </ActSection>
     </>
   );

@@ -40,7 +40,7 @@ export default function SceneCanvas() {
       powerPreference: "high-performance",
     });
     renderer.setClearColor(0x000000, 0);
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, tier === "high" ? 2 : 1.25));
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, tier === "high" ? 1.5 : 1));
     renderer.setSize(window.innerWidth, window.innerHeight);
 
     const threeScene = new THREE.Scene();
